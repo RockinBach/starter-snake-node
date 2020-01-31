@@ -45,7 +45,7 @@ app.post('/start', (request, response) => {
 
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
-  var i = 0;
+  var i = 1;
   var arrMove = [
     'up', 'down', 'left', 'right'
   ];
