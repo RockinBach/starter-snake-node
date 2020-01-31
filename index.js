@@ -156,6 +156,7 @@ app.post('/move', (request, response) => {
           d = 1;
         }
       }
+      d = prevDirection;
     } else {
       d = prevDirection;
     }
