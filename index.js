@@ -96,16 +96,16 @@ app.post('/move', (request, response) => {
   }
 
   //Check for collisions with walls
-  if(mySnake[0].y == 0 && mySnake[1].y == 1){
+  if(mySnake[0].y == 0){
     topCollision = 1;
   }
-  if(mySnake[0].y == gameHeight && mySnake[1].y == gameHeight - 1){
+  if(mySnake[0].y == gameHeight){
     bottomCollision = 1;
   }
-  if(mySnake[0].x == 0 && mySnake[1].x == 1){
+  if(mySnake[0].x == 0){
     rightCollision = 1;
   }
-  if(mySnake[0].x == gameWidth && mySnake[1].x == gameWidth - 1){
+  if(mySnake[0].x == gameWidth){
      leftCollision = 1;
   }
 
