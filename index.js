@@ -59,6 +59,7 @@ app.post('/move', (request, response) => {
   console.log(request);
 
   var arrMove = ["up", "down", "left", "right"];
+  var arrCollision = [0, 0, 0, 0];
   var mySnake = [];
   var gmaeHeight = request.body.board.height;
   var gameWidth = request.body.board.width;
@@ -107,6 +108,13 @@ app.post('/move', (request, response) => {
      leftCollision = 1;
   }
 
+  arrCollision[0] = topCollision;
+  arrCollision[1] = bottomCollision;
+  arrCollision[2] = leftCollision;
+  arrCollision[3] = rightCollision;
+
+/*
+
     //Handle collisions
   if(rightCollision == 1 && mySnake[0].x - 1 == mySnake[1].x){
 
@@ -140,10 +148,10 @@ app.post('/move', (request, response) => {
       d = 3;
     }
   }
-console.log('topCollision')
-console.log('bottomCollision')
-console.log('rightCollision')
-console.log('leftCollision')
+
+  */
+
+console.log(arrCollision)
 console.log('d')
   // Response data
   var turn = arrMove[d];
