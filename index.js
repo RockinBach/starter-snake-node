@@ -54,9 +54,9 @@ app.post('/move', (request, response) => {
     i = 2;
   }
   // Response data
-  
+  var turn = arrMove[i];
   const data = {
-   move: arrMove[i]
+   move: turn
    }
 
   return response.json(data)
