@@ -134,29 +134,27 @@ app.post('/move', (request, response) => {
           //if not clear turn right
           d = 3;
         }
-      }
-      if(prevDirection == 1 && Collision[1] == 1){
+      } else if(prevDirection == 1 && Collision[1] == 1){
         if(Collision[2] == 0){
           d = 2;
         } else {
           d = 3;
         }
-      }
-      if(prevDirection == 2 && Collision[2] == 1){
+      } else if(prevDirection == 2 && Collision[2] == 1){
         if(Collision[0] == 0){
           d = 0;
         } else {
           d = 1;
         }
-      }
-      if(prevDirection == 3 && Collision[3] == 1){
+      } else if(prevDirection == 3 && Collision[3] == 1){
         if(Collision[0] == 0){
           d = 0;
         } else {
           d = 1;
         }
-      }
+      }else{
       d = prevDirection;
+      }
     } else {
       d = prevDirection;
     }
