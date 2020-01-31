@@ -45,11 +45,12 @@ app.post('/start', (request, response) => {
 
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
+  console.log(request);
+
   var i = 1;
   var arrMove = ["up", "down", "left", "right"];
   var turnNumber = 1;
 
-  console.log(request);
 
   if(turnNumber == 2){
     i = 3;
