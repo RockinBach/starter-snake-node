@@ -99,7 +99,6 @@ app.post('/move', (request, response) => {
   if(mySnake[0].y == 0 && mySnake[1].y == 1){
     topCollision = 1;
   }
-/*
   if(mySnake[0].y == gameHeight && mySnake[1].y == gameHeight - 1){
     bottomCollision = 1;
   }
@@ -109,7 +108,7 @@ app.post('/move', (request, response) => {
   if(mySnake[0].x == gameWidth && mySnake[1].x == gameWidth - 1){
      leftCollision = 1;
   }
-*/
+
   arrCollision[0] = topCollision;
   arrCollision[1] = bottomCollision;
   arrCollision[2] = leftCollision;
