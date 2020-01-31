@@ -35,7 +35,7 @@ app.use(poweredByHandler)
 
 
 
-// --- SNAKE LOGIC GOES BELOW THIS LINE ---
+// --- mySnake LOGIC GOES BELOW THIS LINE ---
 
 // Handle POST request to '/start'
 app.post('/start', (request, response) => {
@@ -60,7 +60,13 @@ app.post('/move', (request, response) => {
 
   var arrMove = ["up", "down", "left", "right"];
   var mySnake = [];
-  var i = 2;
+  var gmaeHeight = request.body.board.height;
+  var gameWidth = request.body.board.width;
+  var d = 0;
+  var topCollision = 0;
+  var bottomCollision = 0;
+  var rightCollision = 0;
+  var leftCollision = 0;
 
   for(let i = 0; i < request.body.you.body.length; i++){
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
@@ -70,22 +76,73 @@ app.post('/move', (request, response) => {
   console.log("new turn" );
   console.log(mySnake);
 
+  //check for collisions with itself
+  for(let i =  4; i < mySnake.length; i++){
+    if(mySnake[i].x === mySnake[0].x + 10 && mySnake[i].y === mySnake[0].y){
+      rightCollision = 1;
+    }
 
+    if(mySnake[i].x === mySnake[0].x - 10 && mySnake[i].y === mySnake[0].y){
+      leftCollision = 1;
+    }
 
+    if(mySnake[i].x === mySnake[0].x && mySnake[i].y === mySnake[0].y + 10){
+      bottomCollision = 1;
+    }
+    if(mySnake[i].x === mySnake[0].x && mySnake[i].y === mySnake[0].y - 10){
+      topCollision = 1;
+    }
+  }
+  //Check for collisions with walls
+  if(mySnake[0].y === 0 && mySnake[1].y === 1){
+    topCollision = 1;
+  }
+  if(mySnake[0].y === gameHeight && mySnake[1].y === gameHeight - 1){
+    bottomCollision = 1;
+  }
+  if(mySnake[0].x === 0 && mySnake[1].x === 1){
+    rightCollision = 1;
+  }
+  if(mySnake[0].x === gameWidth && mySnake[1].x === gameWidth - 1){
+     leftCollision = 1;
+  }
 
+    //Handle collisions
+  if(rightCollision === 1 && mySnake[0].x - 1 === mySnake[1].x){
 
+    if(topCollision === 0){
+      d = 0;
+    }else if(bottomCollision === 0){
+      d = 1;
+    }
+  }
+  if(leftCollision === 1 && mySnake[0].x + 1 === mySnake[1].x){
 
+    if(topCollision === 0){
+      d = 0;
+    }else if(bottomCollision === 0){
+      d = 1;
+    }
+  }
+  if(bottomCollision === 1 && mySnake[0].y - 1 === mySnake[1].y){
 
+    if(leftCollision === 0){
+      d = 2;
+    }else if(rightCollision === 0){
+      d = 3;
+    }
+  }
+  if(topCollision === 1 && mySnake[0].y + 1 === mySnake[1].y){
 
-
-
-
-
-
-
+    if(leftCollision === 0){
+      d = 2;
+    }else if(rightCollision === 0){
+      d = 3;
+    }
+  }
 
   // Response data
-  var turn = arrMove[i];
+  var turn = arrMove[d];
   const data = {
    move: turn,
    }
@@ -125,11 +182,11 @@ app.post('/end', (request, response) => {
 })
 
 app.post('/ping', (request, response) => {
-  // Used for checking if this snake is still alive.
+  // Used for checking if this mySnake is still alive.
   return response.json({});
 })
 
-// --- SNAKE LOGIC GOES ABOVE THIS LINE ---
+// --- mySnake LOGIC GOES ABOVE THIS LINE ---
 
 app.use('*', fallbackHandler)
 app.use(notFoundHandler)
