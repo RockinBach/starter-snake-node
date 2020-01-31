@@ -19,17 +19,27 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(poweredByHandler)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // --- SNAKE LOGIC GOES BELOW THIS LINE ---
 
 // Handle POST request to '/start'
 app.post('/start', (request, response) => {
   // NOTE: Do something here to start the game
-
-  //To commit changes push following
-  //git add .
-  //git commit -m ""
-  //git push
-  //git push heroku master
 
   // Response data
   const data = {
@@ -44,22 +54,36 @@ app.post('/start', (request, response) => {
 // Handle POST request to '/move'
 
 app.post('/move', (request, response) => {
+
   // NOTE: Do something here to generate your move
   console.log(request);
 
-  var i = 1;
   var arrMove = ["up", "down", "left", "right"];
-  var turnNumber = request.body.turn;
-  var foodX = request.body.board.food[0].x;
-  var foodY = request.body.board.food[0].y;
-  console.log(foodX);
-  console.log(foodY);
+  var mySnake = [];
+  var i = 2;
 
-  if(turnNumber == 2){
-    i = 3;
-  } else {
-    i = 2;
-  } 
+  for(let i = 0; i < request.body.you.body.length; i++){
+    const bodyPart = {x: request.body.you.body[i].x y: request.body.you.body[i].y};
+    mySnake.push(bodyPart);
+  }
+
+  console.log("new turn" );
+  console.log(mySnake);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // Response data
   var turn = arrMove[i];
   const data = {
@@ -68,6 +92,32 @@ app.post('/move', (request, response) => {
 
   return response.json(data)
 })
+ 
+//Leaving space to not be confused
+  /*To commit changes push following
+      git add .
+      git commit -m ""
+      git push
+      git push heroku master
+  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.post('/end', (request, response) => {
   // NOTE: Any cleanup when a game is complete.
