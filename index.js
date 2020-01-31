@@ -45,18 +45,18 @@ app.post('/start', (request, response) => {
 
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
-  var i = 1;
+  var i = 2;
   var arrMove = ["up", "down", "left", "right"];
 
-  if(request.json(turn) === 2){
+  /*if(request.json(turn) === 2){
     i = 3;
   } else {
     i = 2;
-  }
+  } */
   // Response data
   var turn = arrMove[i];
   const data = {
-   move: turn
+   move: turn,
    }
 
   return response.json(data)
