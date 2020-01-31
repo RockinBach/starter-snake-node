@@ -56,7 +56,7 @@ app.post('/start', (request, response) => {
 app.post('/move', (request, response) => {
 
   // NOTE: Do something here to generate your move
-  console.log(request);
+  //console.log(request);
 
   var arrMove = ["up", "down", "left", "right"];
   var Collision = [0, 0, 0, 0];
