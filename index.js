@@ -25,10 +25,16 @@ app.use(poweredByHandler)
 app.post('/start', (request, response) => {
   // NOTE: Do something here to start the game
 
+  //To commit changes push following
+  //git add .
+  //git commit -m ""
+  //git push
+  //git push heroku master
+
   // Response data
   const data = {
     color: '#1E90FF',
-    headType: 'evil',
+    headType: 'smile',
     tailType: 'round-bum'
   }
 
@@ -36,15 +42,11 @@ app.post('/start', (request, response) => {
 })
 
 // Handle POST request to '/move'
-//To commit changes push following
-//git add .
-//git commit -m ""
-//git push
-//git push heroku master
+
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
-  let i = 0;
-  let move = [
+  var i = 0;
+  var move = [
     'up', 'down', 'left', 'right'
   ]
   if(request.body[0].y === request.board.height){
