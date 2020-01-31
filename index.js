@@ -45,22 +45,17 @@ app.post('/start', (request, response) => {
 
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
-  var i = 0;
+  var i = 1;
   var move = [
     'up', 'down', 'left', 'right'
   ];
-  if(request.body[0].y === request.board.height){
+  if(request.json(turn) === 2){
     i = 3;
   } else {
     i = 2;
   }
-  // Response data
-  
-  const data = {
-   movement: move[i]
-   }
 
-  return response.json(data)
+  return response.json(move[i])
 })
 
 app.post('/end', (request, response) => {
