@@ -28,6 +28,8 @@ app.post('/start', (request, response) => {
   // Response data
   const data = {
     color: '#1E90FF',
+    headType: 'smile',
+    tailType: 'round-bum'
   }
 
   return response.json(data)
