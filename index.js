@@ -34,7 +34,7 @@ app.post('/start', (request, response) => {
   // Response data
   const data = {
     color: '#1E90FF',
-    headType: 'smile',
+    headType: 'evil',
     tailType: 'round-bum'
   }
 
@@ -48,7 +48,7 @@ app.post('/move', (request, response) => {
   var i = 2;
   var arrMove = ["up", "down", "left", "right"];
 
-  if(request.json(turn) == 2){
+  if(i == 2){
     i = 3;
   } else {
     i = 2;
