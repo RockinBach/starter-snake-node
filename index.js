@@ -63,7 +63,7 @@ app.post('/move', (request, response) => {
   var i = 2;
 
   for(let i = 0; i < request.body.you.body.length; i++){
-    const bodyPart = {x: request.body.you.body[i].x y: request.body.you.body[i].y};
+    const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
     mySnake.push(bodyPart);
   }
 
