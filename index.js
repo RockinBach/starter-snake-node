@@ -75,13 +75,13 @@ app.post('/move', (request, response) => {
   console.log(mySnake);
 
   //Check previous move
-  if(mySnake[0].x == mySnake[1].x + 1){
+  if(mySnake[0].x - 1 == mySnake[1].x){
     prevDirection = 3;
-  }else if(mySnake[0].x == mySnake[1].x - 1){
+  }else if(mySnake[0].x + 1 == mySnake[1].x){
     prevDirection = 2;
-  }else if(mySnake[0].y == mySnake[1].y - 1){
+  }else if(mySnake[0].y - 1 == mySnake[1].y){
     prevDirection = 1;
-  }else if(mySnake[0].y == mySnake[1].y + 1){
+  }else if(mySnake[0].y + 1 == mySnake[1].y){
     prevDirection = 0;
   }
 
