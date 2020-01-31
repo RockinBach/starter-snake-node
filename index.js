@@ -50,9 +50,10 @@ app.post('/move', (request, response) => {
   var i = 1;
   var arrMove = ["up", "down", "left", "right"];
   var turnNumber = request.body.turn;
-  var foodX = request.body.board.food[0].x
-
+  var foodX = request.body.board.food[0].x;
+  var foodY = request.body.board.food[0].y;
   console.log(foodX);
+  console.log(foodY);
 
   if(turnNumber == 2){
     i = 3;
