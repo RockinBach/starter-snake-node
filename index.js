@@ -109,7 +109,7 @@ app.post('/move', (request, response) => {
     Collision[0] = 1;
   }
   //bottom wall
-  if(mySnake[0].y == gameHeight){
+  if(mySnake[0].y == gameHeight -1){
     Collision[1] = 1;
   }
   //left wall
@@ -117,7 +117,7 @@ app.post('/move', (request, response) => {
     Collision[2] = 1;
   }
   //right wall
-  if(mySnake[0].x == gameWidth){
+  if(mySnake[0].x == gameWidth - 1){
      Collision[3] = 1;
   }
 
@@ -158,43 +158,10 @@ app.post('/move', (request, response) => {
     } else {
       d = prevDirection;
     }
-/*
-  if(Collision[2] == 1 && mySnake[0].x - 1 == mySnake[1].x){
 
-    if(Collision[0] == 0){
-      d = 0;
-    }else if(Collision[1] == 0){
-      d = 1;
-    }
-  }
-  if(Collision[3] == 1 && mySnake[0].x + 1 == mySnake[1].x){
-
-    if(Collision[0] == 0){
-      d = 0;
-    }else if(Collision[1] == 0){
-      d = 1;
-    }
-  }
-  if(Collision[1] == 1 && mySnake[0].y - 1 === mySnake[1].y){
-
-    if(Collision[3] == 0){
-      d = 2;
-    }else if(Collision[2] == 0){
-      d = 3;
-    }
-  }
-  if(Collision[0] == 1 && mySnake[0].y + 1 == mySnake[1].y){
-
-    if(Collision[3] == 0){
-      d = 2;
-    }else if(Collision[2] == 0){
-      d = 3;
-    }
-  }
-*/
-console.log(prevDirection);
-console.log(Collision);
-console.log(d);
+  console.log(prevDirection);
+  console.log(Collision);
+  console.log(d);
   // Response data
   var turn = arrMove[d];
   const data = {
