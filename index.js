@@ -94,15 +94,16 @@ app.post('/move', (request, response) => {
       topCollision = 1;
     }
   }
-/*
+
   //Check for collisions with walls
   if(mySnake[0].y == 0 && mySnake[1].y == 1){
     topCollision = 1;
   }
+/*
   if(mySnake[0].y == gameHeight && mySnake[1].y == gameHeight - 1){
     bottomCollision = 1;
   }
-  if(mySnake[0].x == 0 && mySnake[1].x === 1){
+  if(mySnake[0].x == 0 && mySnake[1].x == 1){
     rightCollision = 1;
   }
   if(mySnake[0].x == gameWidth && mySnake[1].x == gameWidth - 1){
@@ -153,7 +154,7 @@ app.post('/move', (request, response) => {
   */
 
 console.log(arrCollision)
-console.log('d')
+console.log(d)
   // Response data
   var turn = arrMove[d];
   const data = {
