@@ -54,11 +54,11 @@ app.post('/move', (request, response) => {
   }
   // Response data
   
-  //const data = {
-  // movement: 'up', // one of: ['up','down','left','right']
-  // }
+  const data = {
+   movement: move[i]
+   }
 
-  return response.json(move[i])
+  return response.json(data)
 })
 
 app.post('/end', (request, response) => {
