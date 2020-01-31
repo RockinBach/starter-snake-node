@@ -48,8 +48,8 @@ app.post('/move', (request, response) => {
   var i = 2;
   var arrMove = ["up", "down", "left", "right"];
 
-  if(i == 2){
-    i = 3;
+  if(request.turn == 2){
+    i = 1;
   } else {
     i = 2;
   } 
