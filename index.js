@@ -43,15 +43,22 @@ app.post('/start', (request, response) => {
 //git push heroku master
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
+  let i = 0;
+  let move = [
+    'up', 'down', 'left', 'right'
+  ]
   if(height === 1){
-    return response.json(left)
+    i = 3;
+  }else{
+    i = 1;
   }
   // Response data
-  const data = {
-    move: 'up', // one of: ['up','down','left','right']
-  }
+  
+  //const data = {
+  // movement: 'up', // one of: ['up','down','left','right']
+  // }
 
-  return response.json(data)
+  return response.json(move[i])
 })
 
 app.post('/end', (request, response) => {
