@@ -59,15 +59,12 @@ app.post('/move', (request, response) => {
   console.log(request);
 
   var arrMove = ["up", "down", "left", "right"];
-  var arrCollision = [0, 0, 0, 0];
+  var Collision = [0, 0, 0, 0];
   var mySnake = [];
+  var prevDirection = 0;
   var gameHeight = request.body.board.height;
   var gameWidth = request.body.board.width;
   var d = 0;
-  var topCollision = 0;
-  var bottomCollision = 0;
-  var rightCollision = 0;
-  var leftCollision = 0;
 
   for(let i = 0; i < request.body.you.body.length; i++){
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
@@ -77,81 +74,95 @@ app.post('/move', (request, response) => {
   console.log("new turn" );
   console.log(mySnake);
 
+  //Check previous move
+  if(mySnake[0].x == mySnake[1].x + 1){
+    prevDirection = 3;
+  }else if(mySnake[0].x == mySnake[1].x - 1){
+    prevDirection = 2;
+  }else if(mySnake[0].y == mySnake[1].y - 1){
+    prevDirection = 1;
+  }else if(mySnake[0].y == mySnake[1].y + 1){
+    prevDirection = 0;
+  }
+
   //check for collisions with itself
   for(let i = 4; i < mySnake.length; i++){
     if(mySnake[i].x == mySnake[0].x + 1 && mySnake[i].y == mySnake[0].y){
-      rightCollision = 1;
+      Collision[2] = 1;
     }
 
     if(mySnake[i].x == mySnake[0].x - 1 && mySnake[i].y == mySnake[0].y){
-      leftCollision = 1;
+      Collision[3] = 1;
     }
 
     if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y + 1){
-      bottomCollision = 1;
+      Collision[1] = 1;
     }
     if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y - 1){
-      topCollision = 1;
+      Collision[0] = 1;
     }
   }
 
   //Check for collisions with walls
+  //top wall
   if(mySnake[0].y == 0){
-    topCollision = 1;
+    Collision[0] = 1;
   }
+  //bottom wall
   if(mySnake[0].y == gameHeight){
-    bottomCollision = 1;
+    Collision[1] = 1;
   }
+  //left wall
   if(mySnake[0].x == 0){
-    rightCollision = 1;
+    Collision[2] = 1;
   }
+  //right wall
   if(mySnake[0].x == gameWidth){
-     leftCollision = 1;
+     Collision[3] = 1;
   }
-
-  arrCollision[0] = topCollision;
-  arrCollision[1] = bottomCollision;
-  arrCollision[2] = leftCollision;
-  arrCollision[3] = rightCollision;
-
-
 
     //Handle collisions
-  if(rightCollision == 1 && mySnake[0].x - 1 == mySnake[1].x){
+    if(Collision[0] == 1 || Collision[1] == 1 || Collision[2] == 1 && prevDirection != 3) d = 3;
+    if(Collision[0] == 1 || Collision[1] == 1 || Collision[3] == 1 && prevDirection != 2) d = 2;
+    if(Collision[0] == 1 || Collision[2] == 1 || Collision[3] == 1 && prevDirection != 1) d = 1;
+    if(Collision[1] == 1 || Collision[2] == 1 || Collision[3] == 1 && prevDirection != 0) d = 0;
 
-    if(topCollision == 0){
+/*
+  if(Collision[2] == 1 && mySnake[0].x - 1 == mySnake[1].x){
+
+    if(Collision[0] == 0){
       d = 0;
-    }else if(bottomCollision == 0){
+    }else if(Collision[1] == 0){
       d = 1;
     }
   }
-  if(leftCollision == 1 && mySnake[0].x + 1 == mySnake[1].x){
+  if(Collision[3] == 1 && mySnake[0].x + 1 == mySnake[1].x){
 
-    if(topCollision == 0){
+    if(Collision[0] == 0){
       d = 0;
-    }else if(bottomCollision == 0){
+    }else if(Collision[1] == 0){
       d = 1;
     }
   }
-  if(bottomCollision == 1 && mySnake[0].y - 1 === mySnake[1].y){
+  if(Collision[1] == 1 && mySnake[0].y - 1 === mySnake[1].y){
 
-    if(leftCollision == 0){
+    if(Collision[3] == 0){
       d = 2;
-    }else if(rightCollision == 0){
+    }else if(Collision[2] == 0){
       d = 3;
     }
   }
-  if(topCollision == 1 && mySnake[0].y + 1 == mySnake[1].y){
+  if(Collision[0] == 1 && mySnake[0].y + 1 == mySnake[1].y){
 
-    if(leftCollision == 0){
+    if(Collision[3] == 0){
       d = 2;
-    }else if(rightCollision == 0){
+    }else if(Collision[2] == 0){
       d = 3;
     }
   }
+*/
 
-
-console.log(arrCollision)
+console.log(Collision)
 console.log(d)
   // Response data
   var turn = arrMove[d];
