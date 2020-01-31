@@ -122,11 +122,43 @@ app.post('/move', (request, response) => {
   }
 
     //Handle collisions
-    if(Collision[0] == 1 || Collision[1] == 1 || Collision[2] == 1 && prevDirection != 3) d = 3;
-    if(Collision[0] == 1 || Collision[1] == 1 || Collision[3] == 1 && prevDirection != 2) d = 2;
-    if(Collision[0] == 1 || Collision[2] == 1 || Collision[3] == 1 && prevDirection != 1) d = 1;
-    if(Collision[1] == 1 || Collision[2] == 1 || Collision[3] == 1 && prevDirection != 0) d = 0;
-
+    //check if any collisons
+    if(Collision[0] == 1 || Collision[1] == 1 || Collision[2] == 1 || Collision[3] == 1){
+      //check if going up and upper collision
+      if(prevDirection == 0 && Collision[0] == 1){
+        //Check if left is clear
+        if(Collision[2] == 0){
+          //turn left
+          d = 2;
+        } else {
+          //if not clear turn right
+          d = 3;
+        }
+      }
+      if(prevDirection == 1 && Collision[1] == 1){
+        if(Collision[2] == 0){
+          d = 2;
+        } else {
+          d = 3;
+        }
+      }
+      if(prevDirection == 2 && Collision[2] == 1){
+        if(Collision[0] == 0){
+          d = 0;
+        } else {
+          d = 1;
+        }
+      }
+      if(prevDirection == 3 && Collision[3] == 1){
+        if(Collision[0] == 0){
+          d = 0;
+        } else {
+          d = 1;
+        }
+      }
+    } else {
+      d = prevDirection;
+    }
 /*
   if(Collision[2] == 1 && mySnake[0].x - 1 == mySnake[1].x){
 
@@ -161,9 +193,9 @@ app.post('/move', (request, response) => {
     }
   }
 */
-
-console.log(Collision)
-console.log(d)
+console.log(prevDirection);
+console.log(Collision);
+console.log(d);
   // Response data
   var turn = arrMove[d];
   const data = {
