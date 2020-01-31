@@ -48,10 +48,10 @@ app.post('/move', (request, response) => {
   var i = 0;
   var move = [
     'up', 'down', 'left', 'right'
-  ]
+  ];
   if(request.body[0].y === request.board.height){
     i = 3;
-  }else{
+  } else {
     i = 2;
   }
   // Response data
