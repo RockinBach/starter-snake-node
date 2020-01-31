@@ -49,7 +49,7 @@ app.post('/move', (request, response) => {
 
   var i = 1;
   var arrMove = ["up", "down", "left", "right"];
-  var turnNumber = 1;
+  var turnNumber = request.body.turn;
 
 
   if(turnNumber == 2){
