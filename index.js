@@ -47,7 +47,9 @@ app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
   var i = 1;
   var arrMove = ["up", "down", "left", "right"];
-  var turnNumber = request.body['turn'];
+  var turnNumber = request.body.board.food['x'];
+
+  console.log(request.body.board.food['x']);
 
   if(turnNumber == 2){
     i = 3;
