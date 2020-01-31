@@ -57,7 +57,7 @@ app.post('/move', (request, response) => {
   // Response data
   
   const data = {
-   move: arrMove[i];
+   move: arrMove[i]
    }
 
   return response.json(data)
