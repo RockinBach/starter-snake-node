@@ -78,18 +78,18 @@ app.post('/move', (request, response) => {
 
   //check for collisions with itself
   for(let i = 4; i < mySnake.length; i++){
-    if(mySnake[i].x == mySnake[0].x + 10 && mySnake[i].y == mySnake[0].y){
+    if(mySnake[i].x == mySnake[0].x + 1 && mySnake[i].y == mySnake[0].y){
       rightCollision = 1;
     }
 
-    if(mySnake[i].x == mySnake[0].x - 10 && mySnake[i].y == mySnake[0].y){
+    if(mySnake[i].x == mySnake[0].x - 1 && mySnake[i].y == mySnake[0].y){
       leftCollision = 1;
     }
 
-    if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y + 10){
+    if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y + 1){
       bottomCollision = 1;
     }
-    if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y - 10){
+    if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y - 1){
       topCollision = 1;
     }
   }
@@ -144,6 +144,7 @@ console.log('topCollision')
 console.log('bottomCollision')
 console.log('rightCollision')
 console.log('leftCollision')
+console.log('d')
   // Response data
   var turn = arrMove[d];
   const data = {
