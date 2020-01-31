@@ -47,8 +47,9 @@ app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
   var i = 2;
   var arrMove = ["up", "down", "left", "right"];
+  var turnNumber = req.get(turn);
 
-  if(req.param('turn') == 2){
+  if(turnNumber == 2){
     i = 1;
   } else {
     i = 2;
