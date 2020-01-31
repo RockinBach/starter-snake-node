@@ -34,7 +34,7 @@ app.post('/start', (request, response) => {
   // Response data
   const data = {
     color: '#1E90FF',
-    headType: 'evil',
+    headType: 'smile',
     tailType: 'round-bum'
   }
 
@@ -45,8 +45,8 @@ app.post('/start', (request, response) => {
 
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
-  var i = 1;
-  var move = [
+  var i = 0;
+  var arrMove = [
     'up', 'down', 'left', 'right'
   ];
   if(request.json(turn) === 2){
@@ -54,8 +54,13 @@ app.post('/move', (request, response) => {
   } else {
     i = 2;
   }
+  // Response data
+  
+  const data = {
+   move: arrMove[i];
+   }
 
-  return response.json(move[i])
+  return response.json(data)
 })
 
 app.post('/end', (request, response) => {
