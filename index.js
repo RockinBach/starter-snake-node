@@ -47,7 +47,7 @@ app.post('/move', (request, response) => {
   let move = [
     'up', 'down', 'left', 'right'
   ]
-  if(request.height === 1){
+  if(request.body[0].y === request.board.height){
     i = 3;
   }else{
     i = 2;
