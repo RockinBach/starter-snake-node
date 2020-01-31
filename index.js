@@ -48,11 +48,11 @@ app.post('/move', (request, response) => {
   var i = 2;
   var arrMove = ["up", "down", "left", "right"];
 
-  /*if(request.json(turn) === 2){
+  if(request.json(turn) == 2){
     i = 3;
   } else {
     i = 2;
-  } */
+  } 
   // Response data
   var turn = arrMove[i];
   const data = {
