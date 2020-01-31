@@ -47,10 +47,10 @@ app.post('/move', (request, response) => {
   let move = [
     'up', 'down', 'left', 'right'
   ]
-  if(height === 1){
+  if(request.height === 1){
     i = 3;
   }else{
-    i = 1;
+    i = 2;
   }
   // Response data
   
