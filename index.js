@@ -27,13 +27,18 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    color: '#DFFF00',
+    color: '#1E90FF',
   }
 
   return response.json(data)
 })
 
 // Handle POST request to '/move'
+//To commit changes push following
+//git add .
+//git commit -m ""
+//git push
+//git push heroku master
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
