@@ -172,7 +172,7 @@ app.post('/move', (request, response) => {
     }
 
   console.log("food locations" + food)
-  console.log("Collisions"Collision);
+  console.log("Collisions" + Collision);
   console.log("previous Dirction" + prevDirection + "move" + d);
   // Response data
   var turn = arrMove[d];
