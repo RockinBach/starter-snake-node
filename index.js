@@ -61,7 +61,7 @@ app.post('/move', (request, response) => {
   var arrMove = ["up", "down", "left", "right"];
   var arrCollision = [0, 0, 0, 0];
   var mySnake = [];
-  var gmaeHeight = request.body.board.height;
+  var gameHeight = request.body.board.height;
   var gameWidth = request.body.board.width;
   var d = 0;
   var topCollision = 0;
@@ -114,7 +114,7 @@ app.post('/move', (request, response) => {
   arrCollision[2] = leftCollision;
   arrCollision[3] = rightCollision;
 
-/*
+
 
     //Handle collisions
   if(rightCollision == 1 && mySnake[0].x - 1 == mySnake[1].x){
@@ -150,7 +150,6 @@ app.post('/move', (request, response) => {
     }
   }
 
-  */
 
 console.log(arrCollision)
 console.log(d)
