@@ -61,6 +61,7 @@ app.post('/move', (request, response) => {
   var arrMove = ["up", "down", "left", "right"];
   var Collision = [0, 0, 0, 0];
   var mySnake = [];
+  var food = [];
   var prevDirection = 0;
   var gameHeight = request.body.board.height;
   var gameWidth = request.body.board.width;
@@ -70,9 +71,20 @@ app.post('/move', (request, response) => {
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
     mySnake.push(bodyPart);
   }
+  for(let i = 0; i < request.body.board.food.length; i++){
+    const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y, z: 0};
+    food.push(bodyPart);
+    food[i].z = Math.sqrt(Math.pow(food[i].x, 2) + Math.pow(food[i].y, 2));
+  }
+
+
 
   console.log("new turn" );
   console.log(mySnake);
+
+  //find closest food
+
+
 
   //Check previous move
   if(mySnake[0].x - 1 == mySnake[1].x){
@@ -159,9 +171,9 @@ app.post('/move', (request, response) => {
       d = prevDirection;
     }
 
-  console.log(prevDirection);
-  console.log(Collision);
-  console.log(d);
+  console.log("food locations" + food)
+  console.log("Collisions"Collision);
+  console.log("previous Dirction" + prevDirection + "move" + d);
   // Response data
   var turn = arrMove[d];
   const data = {
