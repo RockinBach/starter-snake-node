@@ -61,7 +61,7 @@ app.post('/move', (request, response) => {
   var arrMove = ["up", "down", "left", "right"];
   var Collision = [0, 0, 0, 0];
   var mySnake = [];
-  var food = [];
+  var foods = [];
   var prevDirection = 0;
   var gameHeight = request.body.board.height;
   var gameWidth = request.body.board.width;
@@ -71,12 +71,12 @@ app.post('/move', (request, response) => {
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
     mySnake.push(bodyPart);
   }
-  /*for(let i = 0; i < request.body.board.food.length; i++){
-    const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
-    food.push(bodyPart);
+  for(let i = 0; i < request.body.board.food.length; i++){
+    const bodyPart = {x: request.body.board.food[i].x, y: request.body.board.food[i].y};
+    foods.push(bodyPart);
     //food[i].z = Math.sqrt(Math.pow(food[i].x, 2) + Math.pow(food[i].y, 2));
   }
-*/
+
 
 
   console.log("new turn" );
