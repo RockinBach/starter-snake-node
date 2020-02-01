@@ -96,7 +96,7 @@ app.post('/move', (request, response) => {
 
     //find closest food
 
-    /*if( foods[0].x - mySnake[0].x < 0){
+    if( foods[0].x - mySnake[0].x < 0){
       //check if going right to avoid collision then go left
       if(prevDirection != 3){
         d = 2;
@@ -127,7 +127,7 @@ app.post('/move', (request, response) => {
       }else{
         d = 0;
       }
-    }*/
+    }
 
   //check for collisions with itself
   for(let i = 4; i < mySnake.length; i++){
@@ -197,10 +197,10 @@ app.post('/move', (request, response) => {
           d = 1;
         }
       }else{
-      d = prevDirection;
+      //d = prevDirection;
       }
     } else {
-      d = prevDirection;
+      //d = prevDirection;
     }
 
   console.log("Collisions " + Collision);
