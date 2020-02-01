@@ -132,11 +132,11 @@ app.post('/move', (request, response) => {
   //check for collisions with itself
   for(let i = 4; i < mySnake.length; i++){
     if(mySnake[i].x == mySnake[0].x + 1 && mySnake[i].y == mySnake[0].y){
-      Collision[2] = 1;
+      Collision[3] = 1;
     }
 
     if(mySnake[i].x == mySnake[0].x - 1 && mySnake[i].y == mySnake[0].y){
-      Collision[3] = 1;
+      Collision[2] = 1;
     }
 
     if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y + 1){
