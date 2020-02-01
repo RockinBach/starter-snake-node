@@ -78,8 +78,8 @@ app.post('/move', (request, response) => {
   }
 
 
-
-  console.log("new turn" );
+  console.log("helloWorld");
+  console.log("next turn" );
   console.log(mySnake);
   console.log(foods);
 
@@ -94,7 +94,8 @@ app.post('/move', (request, response) => {
     prevDirection = 0;
   }
 
-    //find closest food
+    //find closest food 
+    /*
     for(let i = 0; i < foods.length; i++){
       if( foods[0].x - mySnake[0].x < 0){
         //check if going right to avoid collision then go left
@@ -129,7 +130,7 @@ app.post('/move', (request, response) => {
         }
       }
     }
-
+*/
   //check for collisions with itself
   for(let i = 4; i < mySnake.length; i++){
     if(mySnake[i].x == mySnake[0].x + 1 && mySnake[i].y == mySnake[0].y){
