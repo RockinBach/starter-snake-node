@@ -82,9 +82,6 @@ app.post('/move', (request, response) => {
   console.log("new turn" );
   console.log(mySnake);
   console.log(foods);
-  //find closest food
-
-
 
   //Check previous move
   if(mySnake[0].x - 1 == mySnake[1].x){
@@ -97,6 +94,41 @@ app.post('/move', (request, response) => {
     prevDirection = 0;
   }
 
+    //find closest food
+
+    if( food[0].x - mySnake[0].x < 0){
+      //check if going right to avoid collision
+      if(prevDirection != 3){
+        d = 3;
+      }else{
+        d = 0;
+      }
+    //if food is above or below the snake
+    } else if(food[0].x - mySnake[0].x == 0){
+      //food is above snake
+      if (food[0] .y - mySnake[0].y < 0){
+        if(prevDirection != 1){
+          d = 0;
+        }else{
+          turnRight();
+        }
+      //food is below snake
+      } else {
+        if(prevDirection != 0){
+          d = 1;
+        }else{
+          d = 3;
+        }
+      }
+    }else{
+      //food is right of snake
+      if(prevDirection != 2){
+        d = 3
+      }else{
+        d = 0;
+      }
+    }
+    
   //check for collisions with itself
   for(let i = 4; i < mySnake.length; i++){
     if(mySnake[i].x == mySnake[0].x + 1 && mySnake[i].y == mySnake[0].y){
@@ -172,7 +204,7 @@ app.post('/move', (request, response) => {
     }
 
   console.log("Collisions " + Collision);
-  console.log("previous Dirction " + prevDirection + " move " + d);
+  console.log("previous Direction " + prevDirection + " move " + d);
   // Response data
   var turn = arrMove[d];
   const data = {
