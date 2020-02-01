@@ -97,20 +97,20 @@ app.post('/move', (request, response) => {
     //find closest food
 
     if( foods[0].x - mySnake[0].x < 0){
-      //check if going right to avoid collision
+      //check if going right to avoid collision then go left
       if(prevDirection != 3){
-        d = 3;
+        d = 2;
       }else{
         d = 0;
       }
     //if food is above or below the snake
     } else if(foods[0].x - mySnake[0].x == 0){
       //food is above snake
-      if (foods[0] .y - mySnake[0].y < 0){
+      if (foods[0].y - mySnake[0].y < 0){
         if(prevDirection != 1){
           d = 0;
         }else{
-          turnRight();
+          d = 3;
         }
       //food is below snake
       } else {
