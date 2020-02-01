@@ -71,12 +71,12 @@ app.post('/move', (request, response) => {
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
     mySnake.push(bodyPart);
   }
-  for(let i = 0; i < request.body.board.food.length; i++){
+  /*for(let i = 0; i < request.body.board.food.length; i++){
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
     food.push(bodyPart);
     //food[i].z = Math.sqrt(Math.pow(food[i].x, 2) + Math.pow(food[i].y, 2));
   }
-
+*/
 
 
   console.log("new turn" );
@@ -121,7 +121,7 @@ app.post('/move', (request, response) => {
     Collision[0] = 1;
   }
   //bottom wall
-  if(mySnake[0].y == gameHeight -1){
+  if(mySnake[0].y == gameHeight - 1){
     Collision[1] = 1;
   }
   //left wall
