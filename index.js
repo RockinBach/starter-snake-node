@@ -71,8 +71,8 @@ app.post('/move', (request, response) => {
     const bodyPart = {x: request.body.you.body[i].x, y: request.body.you.body[i].y};
     mySnake.push(bodyPart);
   }
-  for(let i = 0; i < request.body.board.food.length; i++){
-    const bodyPart = {x: request.body.board.food[i].x, y: request.body.board.food[i].y};
+  for(let j = 0; j < request.body.board.food.length; j++){
+    const bodyPart = {x: request.body.board.food[j].x, y: request.body.board.food[j].y};
     foods.push(bodyPart);
     //food[i].z = Math.sqrt(Math.pow(food[i].x, 2) + Math.pow(food[i].y, 2));
   }
@@ -171,7 +171,7 @@ app.post('/move', (request, response) => {
       d = prevDirection;
     }
 
-  console.log("food locations " + food)
+  console.log("food locations " + foods);
   console.log("Collisions " + Collision);
   console.log("previous Dirction " + prevDirection + " move " + d);
   // Response data
