@@ -78,7 +78,7 @@ app.post('/move', (request, response) => {
   }
 
 
-  console.log("helloWorld");
+  console.log("hello");
   console.log("next turn" );
   console.log(mySnake);
   console.log(foods);
