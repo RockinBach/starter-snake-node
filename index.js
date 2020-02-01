@@ -197,10 +197,10 @@ app.post('/move', (request, response) => {
           d = 1;
         }
       }else{
-      d = prevDirection;
+      //d = prevDirection;
       }
     } else {
-      d = prevDirection;
+      //d = prevDirection;
     }
 
   console.log("Collisions " + Collision);
