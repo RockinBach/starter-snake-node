@@ -72,9 +72,9 @@ app.post('/move', (request, response) => {
     mySnake.push(bodyPart);
   }
   for(let j = 0; j < request.body.board.food.length; j++){
-    const bodyPart = {x: request.body.board.food[j].x, y: request.body.board.food[j].y};
-    foods.push(bodyPart);
-    //food[i].z = Math.sqrt(Math.pow(food[i].x, 2) + Math.pow(food[i].y, 2));
+    const foodPart = {x: request.body.board.food[j].x, y: request.body.board.food[j].y, z: 0};
+    foods.push(foodPart);
+    foods[i].z = Math.sqrt(Math.pow(food[i].x, 2) + Math.pow(food[i].y, 2));
   }
 
 
