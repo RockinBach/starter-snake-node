@@ -81,7 +81,7 @@ app.post('/move', (request, response) => {
 
   console.log("new turn" );
   console.log(mySnake);
-
+  console.log(foods);
   //find closest food
 
 
@@ -171,7 +171,6 @@ app.post('/move', (request, response) => {
       d = prevDirection;
     }
 
-  console.log("food locations " + foods);
   console.log("Collisions " + Collision);
   console.log("previous Dirction " + prevDirection + " move " + d);
   // Response data
