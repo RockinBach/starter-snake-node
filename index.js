@@ -19,23 +19,11 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(poweredByHandler)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//
+//
 // --- mySnake LOGIC GOES BELOW THIS LINE ---
+//
+//
 
 // Handle POST request to '/start'
 app.post('/start', (request, response) => {
@@ -51,13 +39,11 @@ app.post('/start', (request, response) => {
   return response.json(data)
 })
 
+//
 // Handle POST request to '/move'
+//
 
 app.post('/move', (request, response) => {
-
-  // NOTE: Do something here to generate your move
-  //console.log(request);
-
   var arrMove = ["up", "down", "left", "right"];
   var Collision = [0, 0, 0, 0];
   var mySnake = [];
@@ -77,11 +63,7 @@ app.post('/move', (request, response) => {
     //foods[j].z = Math.sqrt(Math.pow(food[j].x, 2) + Math.pow(food[j].y, 2));
   }
 
-
-  console.log("hello");
-  console.log("next turn" );
-  console.log(mySnake);
-  console.log(foods);
+  console.log(mySnake, Foods)
 
   //Check previous move
   if(mySnake[0].x - 1 == mySnake[1].x){
@@ -94,8 +76,7 @@ app.post('/move', (request, response) => {
     prevDirection = 0;
   }
 
-    //find closest food 
-    
+    //find closest food     
     for(let i = 0; i < foods.length; i++){
       if( foods[0].x - mySnake[0].x < 0){
         //check if going right to avoid collision then go left
@@ -207,6 +188,42 @@ app.post('/move', (request, response) => {
 
   console.log("Collisions " + Collision);
   console.log("previous Direction " + prevDirection + " move " + d);
+  
+  // NEW SECTION THAT USES BREADTH FIRST SEARCH
+  //
+  // map all data into array
+    // create an array with enemy snake info
+    var enemySnakes = [];
+    for(let i = 0; i < request.body.board.snakes.length; i++){
+      for(let j = 0; j < request.body.board.snakes.body.length; j++){
+        const enemyPart = {x: request.body.board.snakes[i].body[j].x, y: request.body.board.snakes[i].body[j].y};
+        enemySnakes.push(enemyPart);
+      }
+    }
+    // creat a 2d array the height and width of the board rows and columns
+    var gameMap = [gameWidth][gameHeight];
+    for(let i = 0; i < gameWidth; i++){
+      for(let j = 0; j < gameHeight; j++){
+        gameMap[i][j] = 0;
+      }
+    }
+    // put mySnake into the gameMap
+    for(let i = 0; i < mySnake.length; i++){
+      if(i == 0){
+        gameMap[mySnake[i].x][mySnake[i].y] = 1; //mysnake head = 1
+      }else{
+        gameMap[mySnake[i].x][mySnake[i].y] = 2; //mysnake body = 2
+      }
+    }
+    // put food locations into the gameMap
+    for(let i = 0; i < foods.length; i++){
+      gameMap[foods[i].x][foods[i].y] = 3; //food locations = 3 
+    }
+    // put enemy snake locations into the gameMap
+    for(let i = 0; i < enemySnakes.length; i++){
+      gameMap[enemySnakes[i].x][enemySnakes[i].y] = 4; //enemy snake locations = 4 
+    }
+
   // Response data
   var turn = arrMove[d];
   const data = {
@@ -215,8 +232,6 @@ app.post('/move', (request, response) => {
 
   return response.json(data)
 })
- 
-//Leaving space to not be confused
   /*To commit changes push following
       git add .
       git commit -m ""
@@ -224,23 +239,11 @@ app.post('/move', (request, response) => {
       git push heroku master
   */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
 
 app.post('/end', (request, response) => {
   // NOTE: Any cleanup when a game is complete.
