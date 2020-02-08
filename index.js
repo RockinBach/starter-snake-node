@@ -64,7 +64,7 @@ app.post('/move', (request, response) => {
   }
 
   console.log(mySnake, Foods)
-
+/*
   //Check previous move
   if(mySnake[0].x - 1 == mySnake[1].x){
     prevDirection = 3;
@@ -188,7 +188,7 @@ app.post('/move', (request, response) => {
 
   console.log("Collisions " + Collision);
   console.log("previous Direction " + prevDirection + " move " + d);
-  
+  */
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
   // map all data into array
@@ -223,6 +223,8 @@ app.post('/move', (request, response) => {
     for(let i = 0; i < enemySnakes.length; i++){
       gameMap[enemySnakes[i].x][enemySnakes[i].y] = 4; //enemy snake locations = 4 
     }
+
+    console.log(gameMap);
 
   // Response data
   var turn = arrMove[d];
