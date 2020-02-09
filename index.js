@@ -78,7 +78,7 @@ app.post('/move', (request, response) => {
   //find closest food     
   for(let i = 0; i < foods.length; i++){
     if( foods[0].x - mySnake[0].x < 0){
-      //check if going right to avoid collision then go left
+      //check if going down to avoid collision then go up
       if(prevDirection != 3){
         d = 2;
       }else{
@@ -102,7 +102,7 @@ app.post('/move', (request, response) => {
         }
       }
     }else{
-      //food is right of snake
+      //food is down of snake
       if(prevDirection != 2){
         d = 3
       }else{
@@ -150,14 +150,14 @@ app.post('/move', (request, response) => {
   //Handle collisions
   //check if any collisons
   if(Collision[0] == 1 || Collision[1] == 1 || Collision[2] == 1 || Collision[3] == 1){
-    //check if going up and upper collision
+    //check if going left and upper collision
     if(prevDirection == 0 && Collision[0] == 1){
-      //Check if left is clear
+      //Check if up is clear
       if(Collision[2] == 0){
-        //turn left
+        //turn up
         d = 2;
       } else {
-        //if not clear turn right
+        //if not clear turn down
         d = 3;
       }
     } else if(prevDirection == 1 && Collision[1] == 1){
@@ -258,16 +258,8 @@ app.post('/move', (request, response) => {
       // Take the first location off the queue
       var currentLocation = queue.shift();
 
-      // Explore up
-      var newLocation = exploreInDirection(currentLocation, 'up', gameMap);
-      if (newLocation.status === 3) {
-        return newLocation.path;
-      } else if (newLocation.status === 'Valid') {
-        queue.push(newLocation);
-      }
-
-      // Explore right
-      var newLocation = exploreInDirection(currentLocation, 'right', gameMap);
+      // Explore left
+      var newLocation = exploreInDirection(currentLocation, 'left', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
@@ -282,8 +274,16 @@ app.post('/move', (request, response) => {
         queue.push(newLocation);
       }
 
-      // Explore left
-      var newLocation = exploreInDirection(currentLocation, 'left', gameMap);
+      // Explore right
+      var newLocation = exploreInDirection(currentLocation, 'right', gameMap);
+      if (newLocation.status === 3) {
+        return newLocation.path;
+      } else if (newLocation.status === 'Valid') {
+        queue.push(newLocation);
+      }
+
+      // Explore up
+      var newLocation = exploreInDirection(currentLocation, 'up', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
@@ -332,13 +332,13 @@ app.post('/move', (request, response) => {
     var dft = currentLocation.distanceFromTop;
     var dfl = currentLocation.distanceFromLeft;
 
-    if (direction === 'up') {
+    if (direction === 'left') {
       dft -= 1;
-    } else if (direction === 'right') {
-      dfl += 1;
     } else if (direction === 'down') {
+      dfl += 1;
+    } else if (direction === 'right') {
       dft += 1;
-    } else if (direction === 'left') {
+    } else if (direction === 'up') {
       dfl -= 1;
     }
 
