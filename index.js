@@ -190,6 +190,10 @@ app.post('/move', (request, response) => {
   console.log(mySnake);
   console.log("foods");
   console.log(foods);
+  console.log("amount of enemy snakes");
+  console.log(request.body.board.snakes.length);
+  console.log("first enemy snake length");
+  console.log(request.body.board.snakes[0].body[0].x)
 
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
