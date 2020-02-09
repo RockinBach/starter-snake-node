@@ -208,18 +208,12 @@ app.post('/move', (request, response) => {
       }  
     }
 
-    var array2D = [ 
-      [0,2,3],
-      [4,5,6],
-      [7,8,9]
-    ]
-    console.log("test");
-    console.log(array2D[1][2]);
-
     // creat a 2d array the height and width of the board rows and columns
-    var gameMap = [gameWidth][gameHeight];
-    for(let i = 0; i < gameWidth; i++){
-      for(let j = 0; j < gameHeight; j++){
+
+    var gameMap = [];
+    for(let i = 0; i < gameHeight; i++){
+      gameMap[i] = [];
+      for(let j = 0; j < gameWidth; j++){
         gameMap[i][j] = 0;
       }
     }
