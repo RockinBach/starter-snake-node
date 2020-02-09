@@ -196,7 +196,7 @@ app.post('/move', (request, response) => {
   console.log(request.body.board.snakes[0].body[0].x);
   console.log("first enemy snake Y coord");
   console.log(request.body.board.snakes[0].body[0].y);
-  console.log(request.body.board.snakes[0].id);
+  console.log(request.body.board.snakes[0].name); //
 
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
@@ -236,9 +236,9 @@ app.post('/move', (request, response) => {
     }
     */
 
-    console.log("enemySnakes");
-    console.log(enemySnakes);
-    console.log(gameMap);
+    //console.log("enemySnakes");
+    //console.log(enemySnakes);
+    //console.log(gameMap);
 
   // Response data
   var turn = arrMove[d];
