@@ -44,6 +44,7 @@ app.post('/start', (request, response) => {
 //
 
 app.post('/move', (request, response) => {
+  var myName = "rockinbach / RockinBach";
   var arrMove = ["up", "down", "left", "right"];
   var Collision = [0, 0, 0, 0];
   var mySnake = [];
@@ -197,17 +198,13 @@ app.post('/move', (request, response) => {
   console.log("first enemy snake Y coord");
   console.log(request.body.board.snakes[0].body[0].y);
 
-  var myName = "rockinbach / RockinBach"
-  if(request.body.board.snakes[0].name == myName){
-    console.log(request.body.board.snakes[0].name);
-  }
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
   // map all data into array
     // create an array with enemy snake info
     var enemySnakes = [];
     for(let i = 0; i < request.body.board.snakes.length; i++){
-      if(request.body.board.snakes.name == "rockinbach / RockinBach"){
+      if(request.body.board.snakes[i].name == myName){
         console.log("its my snake");
       }else{
         for(let j = 0; j < request.body.board.snakes.body.length; j++){
