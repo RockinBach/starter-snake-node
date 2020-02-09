@@ -187,10 +187,6 @@ app.post('/move', (request, response) => {
 
   console.log("Collisions " + Collision);
   console.log("previous Direction " + prevDirection + " move " + d);
-  //console.log("mysnake");
-  //console.log(mySnake);
-  //console.log("foods");
-  //console.log(foods);
 
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
@@ -234,11 +230,9 @@ app.post('/move', (request, response) => {
     gameMap[enemySnakes[i].x][enemySnakes[i].y] = 4; //enemy snake locations = 4 
   }
 
-  console.log("enemySnakes");
-  console.log(enemySnakes);
-  console.log(gameMap);
+  //console.log(gameMap);
 
-  //This is an attmept at my maze solver
+  //This is an attempt at my maze solver
   //
   //
   // Start location will be in the following format:
@@ -247,7 +241,6 @@ app.post('/move', (request, response) => {
     var distanceFromTop = mySnake[0].y;
     var distanceFromLeft = mySnake[0].x;
     
-    gameMap[mySnake[0].x][mySnake[0].y] = 1;
     // Each "location" will store its coordinates
     // and the shortest path required to arrive there
     var location = {
@@ -265,32 +258,32 @@ app.post('/move', (request, response) => {
       // Take the first location off the queue
       var currentLocation = queue.shift();
 
-      // Explore North
-      var newLocation = exploreInDirection(currentLocation, 'North', gameMap);
+      // Explore up
+      var newLocation = exploreInDirection(currentLocation, 'up', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
         queue.push(newLocation);
       }
 
-      // Explore East
-      var newLocation = exploreInDirection(currentLocation, 'East', gameMap);
+      // Explore right
+      var newLocation = exploreInDirection(currentLocation, 'right', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
         queue.push(newLocation);
       }
 
-      // Explore South
-      var newLocation = exploreInDirection(currentLocation, 'South', gameMap);
+      // Explore down
+      var newLocation = exploreInDirection(currentLocation, 'down', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
         queue.push(newLocation);
       }
 
-      // Explore West
-      var newLocation = exploreInDirection(currentLocation, 'West', gameMap);
+      // Explore left
+      var newLocation = exploreInDirection(currentLocation, 'left', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
@@ -339,13 +332,13 @@ app.post('/move', (request, response) => {
     var dft = currentLocation.distanceFromTop;
     var dfl = currentLocation.distanceFromLeft;
 
-    if (direction === 'North') {
+    if (direction === 'up') {
       dft -= 1;
-    } else if (direction === 'East') {
+    } else if (direction === 'right') {
       dfl += 1;
-    } else if (direction === 'South') {
+    } else if (direction === 'down') {
       dft += 1;
-    } else if (direction === 'West') {
+    } else if (direction === 'left') {
       dfl -= 1;
     }
 
