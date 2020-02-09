@@ -360,6 +360,7 @@ app.post('/move', (request, response) => {
 
 
   // OK. We have the functions we need--let's run them to get our shortest path!
+  console.log(request.body.turn);
   console.log(findShortestPath(gameMap));
   //
   //
