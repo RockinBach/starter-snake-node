@@ -223,7 +223,11 @@ app.post('/move', (request, response) => {
   }
   // put food locations into the gameMap
   for(let i = 0; i < foods.length; i++){
-    gameMap[foods[i].x][foods[i].y] = 3; //food locations = 3 
+    if(i == 0){
+      gameMap[foods[i].x][foods[i].y] = 3; //food locations = 3
+    }else{
+      gameMap[foods[i].x][foods[i].y] = 2; //food locations = 2 
+    }
   }
   // put enemy snake locations into the gameMap
   for(let i = 0; i < enemySnakes.length; i++){
