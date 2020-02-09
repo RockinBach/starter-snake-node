@@ -191,12 +191,6 @@ app.post('/move', (request, response) => {
   console.log(mySnake);
   console.log("foods");
   console.log(foods);
-  console.log("amount of enemy snakes");
-  console.log(request.body.board.snakes.length);
-  console.log("first enemy snake X coord");
-  console.log(request.body.board.snakes[0].body[0].x);
-  console.log("first enemy snake Y coord");
-  console.log(request.body.board.snakes[0].body[0].y);
 
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
@@ -240,8 +234,8 @@ app.post('/move', (request, response) => {
     }
     */
 
-    //console.log("enemySnakes");
-    //console.log(enemySnakes);
+    console.log("enemySnakes");
+    console.log(enemySnakes);
     //console.log(gameMap);
 
   // Response data
