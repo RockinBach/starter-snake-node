@@ -186,6 +186,10 @@ app.post('/move', (request, response) => {
 
   console.log("Collisions " + Collision);
   console.log("previous Direction " + prevDirection + " move " + d);
+  console.log("mysnake");
+  console.log(mySnake);
+  console.log("foods");
+  console.log(foods);
 
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
@@ -198,6 +202,7 @@ app.post('/move', (request, response) => {
         enemySnakes.push(enemyPart);
       }
     }
+/*
     // creat a 2d array the height and width of the board rows and columns
     var gameMap = [gameWidth][gameHeight];
     for(let i = 0; i < gameWidth; i++){
@@ -205,7 +210,7 @@ app.post('/move', (request, response) => {
         gameMap[i][j] = 0;
       }
     }
-    /*
+
     // put mySnake into the gameMap
     for(let i = 0; i < mySnake.length; i++){
       if(i == 0){
@@ -223,10 +228,7 @@ app.post('/move', (request, response) => {
       gameMap[enemySnakes[i].x][enemySnakes[i].y] = 4; //enemy snake locations = 4 
     }
     */
-   console.log("mysnake")
-    console.log(mySnake);
-    console.log("foods");
-    console.log(foods);
+
     console.log("enemySnakes");
     console.log(enemySnakes);
     console.log(gameMap);
