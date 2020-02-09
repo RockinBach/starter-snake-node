@@ -196,7 +196,9 @@ app.post('/move', (request, response) => {
   console.log(request.body.board.snakes[0].body[0].x);
   console.log("first enemy snake Y coord");
   console.log(request.body.board.snakes[0].body[0].y);
-
+  if(request.body.board.snakes.name == "rockinbach / RockinBach"){
+    console.log(request.body.board.snakes[i].name);
+  }
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
   // map all data into array
@@ -204,7 +206,7 @@ app.post('/move', (request, response) => {
     var enemySnakes = [];
     for(let i = 0; i < request.body.board.snakes.length; i++){
       if(request.body.board.snakes.name == "rockinbach / RockinBach"){
-        console.log(request.body.board.snakes[i].name);
+        console.log("its my snake");
       }else{
         for(let j = 0; j < request.body.board.snakes.body.length; j++){
           const enemyPart = {x: request.body.board.snakes[i].body[j].x, y: request.body.board.snakes[i].body[j].y};
