@@ -196,8 +196,10 @@ app.post('/move', (request, response) => {
   console.log(request.body.board.snakes[0].body[0].x);
   console.log("first enemy snake Y coord");
   console.log(request.body.board.snakes[0].body[0].y);
-  if(request.body.board.snakes.name == "rockinbach / RockinBach"){
-    console.log(request.body.board.snakes[i].name);
+
+  var myName = "rockinbach / RockinBach"
+  if(request.body.board.snakes.name == myName){
+    console.log(request.body.board.snakes[0].name);
   }
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
