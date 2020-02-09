@@ -201,7 +201,7 @@ app.post('/move', (request, response) => {
       if(request.body.board.snakes[i].name == myName){
         console.log("its my snake");
       }else{
-        for(let j = 0; j < request.body.board.snakes.body.length; j++){
+        for(let j = 0; j < request.body.board.snakes[i].body.length; j++){
           const enemyPart = {x: request.body.board.snakes[i].body[j].x, y: request.body.board.snakes[i].body[j].y};
           enemySnakes.push(enemyPart);
         }
