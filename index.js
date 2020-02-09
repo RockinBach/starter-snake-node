@@ -262,16 +262,8 @@ app.post('/move', (request, response) => {
       // Take the first location off the queue
       var currentLocation = queue.shift();
 
-      // Explore left
-      var newLocation = exploreInDirection(currentLocation, 'left', gameMap);
-      if (newLocation.status === 3) {
-        return newLocation.path;
-      } else if (newLocation.status === 'Valid') {
-        queue.push(newLocation);
-      }
-
-      // Explore down
-      var newLocation = exploreInDirection(currentLocation, 'down', gameMap);
+      // Explore up
+      var newLocation = exploreInDirection(currentLocation, 'up', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
@@ -286,8 +278,16 @@ app.post('/move', (request, response) => {
         queue.push(newLocation);
       }
 
-      // Explore up
-      var newLocation = exploreInDirection(currentLocation, 'up', gameMap);
+      // Explore down
+      var newLocation = exploreInDirection(currentLocation, 'down', gameMap);
+      if (newLocation.status === 3) {
+        return newLocation.path;
+      } else if (newLocation.status === 'Valid') {
+        queue.push(newLocation);
+      }
+
+      // Explore left
+      var newLocation = exploreInDirection(currentLocation, 'left', gameMap);
       if (newLocation.status === 3) {
         return newLocation.path;
       } else if (newLocation.status === 'Valid') {
@@ -336,13 +336,13 @@ app.post('/move', (request, response) => {
     var dft = currentLocation.distanceFromTop;
     var dfl = currentLocation.distanceFromLeft;
 
-    if (direction === 'left') {
+    if (direction === 'up') {
       dft -= 1;
-    } else if (direction === 'down') {
-      dfl += 1;
     } else if (direction === 'right') {
+      dfl += 1;
+    } else if (direction === 'down') {
       dft += 1;
-    } else if (direction === 'up') {
+    } else if (direction === 'left') {
       dfl -= 1;
     }
 
