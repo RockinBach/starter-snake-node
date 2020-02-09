@@ -209,12 +209,12 @@ app.post('/move', (request, response) => {
     }
 
     var array2D = [ 
-      [0,0,0],
-      [0,0,0],
-      [0,0,0]
+      [0,2,3],
+      [4,5,6],
+      [7,8,9]
     ]
-
-    console.log(array2D);
+    console.log("test");
+    console.log(array2D[1][2]);
 
     // creat a 2d array the height and width of the board rows and columns
     var gameMap = [gameWidth][gameHeight];
