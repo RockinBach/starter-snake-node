@@ -235,139 +235,32 @@ app.post('/move', (request, response) => {
   }
 
   //console.log(gameMap);
+  function gridSolver(x, y, maze) {
 
-  //This is an attempt at my maze solver
-  //
-  //
-  // Start location will be in the following format:
-    // [distanceFromTop, distanceFromLeft]
-  var findShortestPath = function(gameMap) {
-    var distanceFromTop = mySnake[0].y;
-    var distanceFromLeft = mySnake[0].x;
-    
-    // Each "location" will store its coordinates
-    // and the shortest path required to arrive there
-    var location = {
-      distanceFromTop: distanceFromTop,
-      distanceFromLeft: distanceFromLeft,
-      path: [],
-      status: 1
+    function walk(column, row) {
+        if(maze[column][row] == 3) {
+            console.log("We solved the maze at (" + column + ", " + row + ")");
+        } else if(maze[column][row] == 0) {
+            console.log("At valid position (" + column + ", " + row + ")");
+            maze[column][row] = 9;
+            if(column < maze.length - 1) {
+                walk(column + 1, row);
+            }
+            if(row < maze[column].length - 1) {
+                walk(column, row + 1);
+            }
+            if(column > 0) {
+                walk(column - 1, row);
+            }
+            if(row > 0) {
+                walk(column, row - 1);
+            }
+        }
     };
-
-    // Initialize the queue with the start location already inside
-    var queue = [location];
-
-    // Loop through the gameMap searching for the goal
-    while (queue.length > 0) {
-      // Take the first location off the queue
-      var currentLocation = queue.shift();
-
-      // Explore up
-      var newLocation = exploreInDirection(currentLocation, 'up', gameMap);
-      if (newLocation.status === 3) {
-        return newLocation.path;
-      } else if (newLocation.status === 'Valid') {
-        queue.push(newLocation);
-      }
-
-      // Explore right
-      var newLocation = exploreInDirection(currentLocation, 'right', gameMap);
-      if (newLocation.status === 3) {
-        return newLocation.path;
-      } else if (newLocation.status === 'Valid') {
-        queue.push(newLocation);
-      }
-
-      // Explore down
-      var newLocation = exploreInDirection(currentLocation, 'down', gameMap);
-      if (newLocation.status === 3) {
-        return newLocation.path;
-      } else if (newLocation.status === 'Valid') {
-        queue.push(newLocation);
-      }
-
-      // Explore left
-      var newLocation = exploreInDirection(currentLocation, 'left', gameMap);
-      if (newLocation.status === 3) {
-        return newLocation.path;
-      } else if (newLocation.status === 'Valid') {
-        queue.push(newLocation);
-      }
-    }
-
-    // No valid path found
-    return false;
-
+    walk(x,y);
   };
 
-  // This function will check a location's status
-  // (a location is "valid" if it is on the gameMap, is not an "obstacle",
-  // and has not yet been visited by our algorithm)
-  // Returns "Valid", "Invalid", "Blocked", or "Goal"
-  var locationStatus = function(location, gameMap) {
-    var gridSize = gameMap.length;
-    var dft = location.distanceFromTop;
-    var dfl = location.distanceFromLeft;
-
-    if (location.distanceFromLeft < 0 ||
-        location.distanceFromLeft >= gridSize ||
-        location.distanceFromTop < 0 ||
-        location.distanceFromTop >= gridSize) {
-
-      // location is not on the gameMap--return false
-      return 'Invalid';
-    } else if (gameMap[dft][dfl] === 3) {
-      return 3;
-    } else if (gameMap[dft][dfl] !== 0) {
-      // location is either an obstacle or has been visited
-      return 'Blocked';
-    } else {
-      return 'Valid';
-    }
-  };
-
-
-  // Explores the gameMap from the given location in the given
-  // direction
-  var exploreInDirection = function(currentLocation, direction, gameMap) {
-    var newPath = currentLocation.path.slice();
-    newPath.push(direction);
-
-    var dft = currentLocation.distanceFromTop;
-    var dfl = currentLocation.distanceFromLeft;
-
-    if (direction === 'up') {
-      dft -= 1;
-    } else if (direction === 'right') {
-      dfl += 1;
-    } else if (direction === 'down') {
-      dft += 1;
-    } else if (direction === 'left') {
-      dfl -= 1;
-    }
-
-    var newLocation = {
-      distanceFromTop: dft,
-      distanceFromLeft: dfl,
-      path: newPath,
-      status: 'Unknown'
-    };
-    newLocation.status = locationStatus(newLocation, gameMap);
-
-    // If this new location is valid, mark it as 'Visited'
-    if (newLocation.status === 'Valid') {
-      gameMap[newLocation.distanceFromTop][newLocation.distanceFromLeft] = 'Visited';
-    }
-
-    return newLocation;
-  };
-
-
-  // OK. We have the functions we need--let's run them to get our shortest path!
-  console.log(request.body.turn);
-  console.log(findShortestPath(gameMap));
-  //
-  //
+  gridSolver(mySnake[0].x, mySnake[0].y, gameMap);
   // Response data
   var turn = arrMove[d];
   const data = {
