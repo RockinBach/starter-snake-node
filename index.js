@@ -209,7 +209,6 @@ app.post('/move', (request, response) => {
     }
 
     // creat a 2d array the height and width of the board rows and columns
-
     var gameMap = [];
     for(let i = 0; i < gameHeight; i++){
       gameMap[i] = [];
@@ -217,7 +216,7 @@ app.post('/move', (request, response) => {
         gameMap[i][j] = 0;
       }
     }
-/*
+
     // put mySnake into the gameMap
     for(let i = 0; i < mySnake.length; i++){
       if(i == 0){
@@ -234,7 +233,6 @@ app.post('/move', (request, response) => {
     for(let i = 0; i < enemySnakes.length; i++){
       gameMap[enemySnakes[i].x][enemySnakes[i].y] = 4; //enemy snake locations = 4 
     }
-    */
 
     console.log("enemySnakes");
     console.log(enemySnakes);
