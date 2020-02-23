@@ -233,7 +233,7 @@ app.post('/move', (request, response) => {
   for(let i = 0; i < enemySnakes.length; i++){
     gameMap[enemySnakes[i].y][enemySnakes[i].x] = 4; //enemy snake locations = 4 
   }
-  gameMap[0][1] = 19;
+  gameMap[0][1] = 'start'
   console.log(gameMap);
 
   //Maze Solving Function
@@ -251,8 +251,47 @@ app.post('/move', (request, response) => {
       xLoc = Xqueue.shift();
       yLoc = Yqueue.shift();
 
+      //check if next space is solution
       if(xLoc > 0) {
-        if(gameMap[xLoc - 1][yLoc] == 3){}
+        if(gameMap[xLoc - 1][yLoc] == 3){
+          pathFound = true;
+        }
+      }
+      if(xLoc < gameWidth - 1){
+        if(gameMap[xLoc + 1][yLoc] == 3){
+          pathFound = true;
+        }
+      }
+      if(yLoc > 0) {
+        if(gameMap[xLoc][yLoc - 1] == 3){
+          pathFound = true;
+        }
+      }
+      if(yLoc < gameHeight - 1){
+        if(gameMap[xLoc][yLoc + 1] == 3){
+          pathFound = true;
+        }
+      }
+      //check if next space is empty
+      if(xLoc > 0) {
+        if(gameMap[xLoc - 1][yLoc] == 0){
+          pathFound = true;
+        }
+      }
+      if(xLoc < gameWidth - 1){
+        if(gameMap[xLoc + 1][yLoc] == 0){
+          pathFound = true;
+        }
+      }
+      if(yLoc > 0) {
+        if(gameMap[xLoc][yLoc - 1] == 0){
+          pathFound = true;
+        }
+      }
+      if(yLoc < gameHeight - 1){
+        if(gameMap[xLoc][yLoc + 1] == 0){
+          pathFound = true;
+        }
       }
     }
   }
