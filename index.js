@@ -75,116 +75,6 @@ app.post('/move', (request, response) => {
     prevDirection = 0; //up
   }
 
-  //find closest food     
-  for(let i = 0; i < foods.length; i++){
-    if( foods[0].x - mySnake[0].x < 0){
-      //check if going right to avoid collision then go left
-      if(prevDirection != 3){
-        d = 2;
-      }else{
-        d = 0;
-      }
-    //if food is above or below the snake
-    } else if(foods[0].x - mySnake[0].x == 0){
-      //food is above snake
-      if (foods[0].y - mySnake[0].y < 0){
-        if(prevDirection != 1){
-          d = 0;
-        }else{
-          d = 3;
-        }
-      //food is below snake
-      } else {
-        if(prevDirection != 0){
-          d = 1;
-        }else{
-          d = 3;
-        }
-      }
-    }else{
-      //food is right of snake
-      if(prevDirection != 2){
-        d = 3
-      }else{
-        d = 0;
-      }
-    }
-  }
-
-  //check for collisions with itself
-  for(let i = 4; i < mySnake.length; i++){
-    if(mySnake[i].x == mySnake[0].x + 1 && mySnake[i].y == mySnake[0].y){
-      Collision[3] = 1;
-    }
-
-    if(mySnake[i].x == mySnake[0].x - 1 && mySnake[i].y == mySnake[0].y){
-      Collision[2] = 1;
-    }
-
-    if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y + 1){
-      Collision[1] = 1;
-    }
-    if(mySnake[i].x == mySnake[0].x && mySnake[i].y == mySnake[0].y - 1){
-      Collision[0] = 1;
-    }
-  }
-
-  //Check for collisions with walls
-  //top wall
-  if(mySnake[0].y == 0){
-    Collision[0] = 1;
-  }
-  //bottom wall
-  if(mySnake[0].y == gameHeight - 1){
-    Collision[1] = 1;
-  }
-  //left wall
-  if(mySnake[0].x == 0){
-    Collision[2] = 1;
-  }
-  //right wall
-  if(mySnake[0].x == gameWidth - 1){
-     Collision[3] = 1;
-  }
-
-  //Handle collisions
-  //check if any collisons
-  if(Collision[0] == 1 || Collision[1] == 1 || Collision[2] == 1 || Collision[3] == 1){
-    //check if going up and upper collision
-    if(prevDirection == 0 && Collision[0] == 1){
-      //Check if left is clear
-      if(Collision[2] == 0){
-        //turn left
-        d = 2;
-      } else {
-        //if not clear turn right
-        d = 3;
-      }
-    } else if(prevDirection == 1 && Collision[1] == 1){
-      if(Collision[2] == 0){
-        d = 2;
-      } else {
-        d = 3;
-      }
-    } else if(prevDirection == 2 && Collision[2] == 1){
-      if(Collision[0] == 0){
-        d = 0;
-      } else {
-        d = 1;
-      }
-    } else if(prevDirection == 3 && Collision[3] == 1){
-      if(Collision[0] == 0){
-        d = 0;
-      } else {
-        d = 1;
-      }
-    }else{
-    //d = prevDirection;
-    }
-  } else {
-    //d = prevDirection;
-  }
-
   console.log("Collisions " + Collision);
   console.log("previous Direction " + prevDirection + " move " + d);
 
@@ -216,18 +106,18 @@ app.post('/move', (request, response) => {
   // put mySnake into the gameMap
   for(let i = 0; i < mySnake.length; i++){
     if(i == 0){
-      gameMap[mySnake[i].y][mySnake[i].x].state = 's'; //mysnake head = s for start
+      gameMap[mySnake[i].x][mySnake[i].y].state = 's'; //mysnake head = s for start
     }else{
-      gameMap[mySnake[i].y][mySnake[i].x].state = 'b' + i; //mysnake body = b for body
+      gameMap[mySnake[i].x][mySnake[i].y].state = 'b' + i; //mysnake body = b for body
     }
   }
   // put food locations into the gameMap
   for(let i = 0; i < foods.length; i++){
-      gameMap[foods[i].y][foods[i].x].state = 'f'; //food locations = f for food
+      gameMap[foods[i].x][foods[i].y].state = 'f'; //food locations = f for food
   }
   // put enemy snake locations into the gameMap
   for(let i = 0; i < enemySnakes.length; i++){
-    gameMap[enemySnakes[i].y][enemySnakes[i].x].state = 'v'; //enemy snake locations = v for villain 
+    gameMap[enemySnakes[i].x][enemySnakes[i].y].state = 'v'; //enemy snake locations = v for villain 
   }
   gameMap[0][1].state = 'start'
   console.log(gameMap);
@@ -249,49 +139,100 @@ app.post('/move', (request, response) => {
 
       //check if next space is solution
       if(xLoc > 0) {
-        if(gameMap[xLoc - 1][yLoc] == 3){
+        if(gameMap[xLoc - 1][yLoc].state == 'f'){
           pathFound = true;
         }
       }
       if(xLoc < gameWidth - 1){
-        if(gameMap[xLoc + 1][yLoc] == 3){
+        if(gameMap[xLoc + 1][yLoc].state == 'f'){
           pathFound = true;
         }
       }
       if(yLoc > 0) {
-        if(gameMap[xLoc][yLoc - 1] == 3){
+        if(gameMap[xLoc][yLoc - 1].state == 'f'){
           pathFound = true;
         }
       }
       if(yLoc < gameHeight - 1){
-        if(gameMap[xLoc][yLoc + 1] == 3){
+        if(gameMap[xLoc][yLoc + 1].state == 'f'){
           pathFound = true;
         }
       }
       //check if next space is empty
       if(xLoc > 0) {
-        if(gameMap[xLoc - 1][yLoc] == 0){
-          pathFound = true;
+        if(gameMap[xLoc - 1][yLoc].state == 'e'){
+          Xqueue.push(xLoc-1);
+          Yqueue.push(yLoc);
+          gameMap[xLoc - 1][yLoc].state = gameMap[xLoc][yLoc].state + 'l';
+
         }
       }
       if(xLoc < gameWidth - 1){
-        if(gameMap[xLoc + 1][yLoc] == 0){
-          pathFound = true;
+        if(gameMap[xLoc + 1][yLoc].state == 'e'){
+          Xqueue.push(xLoc+1);
+          Yqueue.push(yLoc);
+          gameMap[xLoc + 1][yLoc].state = gameMap[xLoc][yLoc].state + 'r';
         }
       }
       if(yLoc > 0) {
-        if(gameMap[xLoc][yLoc - 1] == 0){
-          pathFound = true;
+        if(gameMap[xLoc][yLoc - 1].state == 'e'){
+          Xqueue.push(xLoc);
+          Yqueue.push(yLoc-1);
+          gameMap[xLoc][yLoc - 1].state = gameMap[xLoc][yLoc].state + 'u';
         }
       }
       if(yLoc < gameHeight - 1){
-        if(gameMap[xLoc][yLoc + 1] == 0){
-          pathFound = true;
+        if(gameMap[xLoc][yLoc + 1].state == 'e'){
+          Xqueue.push(xLoc);
+          Yqueue.push(yLoc+1);
+          gameMap[xLoc][yLoc + 1].state = gameMap[xLoc][yLoc].state + 'd';
         }
+      }
+    }
+    if (!pathFound){
+      console.log('No path found');
+    }else{
+      console.log('solved');
+      var path = gameMap[xLoc][yLoc].state;
+      var pathLength = path.length;
+      var currX = 0;
+      var currY = 0;
+      var nextMove = 0
+      for(var i = 0; i < pathLength-1; i++){
+        if(path.charAt(i) == 's'){
+          if(path.charAt(i+1) == 'u'){
+            nextMove = 0;
+          }
+          if(path.charAt(i+1) == 'd'){
+            nextMove = 1;
+          }
+          if(path.charAt(i+1) == 'r'){
+            nextMove = 3;
+          }
+          if(path.charAt(i+1) == 'l'){
+            nextMove = 2;
+          }
+          return nextMove;
+        } else {
+          if(path.charAt(i+1) == 'u'){
+            currY -= 1;
+          }
+          if(path.charAt(i+1) == 'd'){
+            currY += 1;
+          }
+          if(path.charAt(i+1) == 'r'){
+            currX -= 1;
+          }
+          if(path.charAt(i+1) == 'l'){
+            currX += 1;
+          }
+          gameMape[currX][currY].state = 'x'
+        } 
       }
     }
   }
  
+  d = solveMaze();
 
   // Response data
   var turn = arrMove[d];
