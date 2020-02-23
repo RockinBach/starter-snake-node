@@ -193,8 +193,9 @@ app.post('/move', (request, response) => {
       var currX = 0;
       var currY = 0;
       var nextMove = 0
+      var totalPath = [];
       for(var i = 0; i < pathLength-1; i++){
-        if(path.charAt(i) == 's'){
+        /* if(path.charAt(i) == 's'){
           if(path.charAt(i+1) == 'u'){
             nextMove = 0;
           }
@@ -208,27 +209,33 @@ app.post('/move', (request, response) => {
             nextMove = 2;
           }
           return nextMove;
-        } else {
+        } else {*/
           if(path.charAt(i+1) == 'u'){
             currY -= 1;
+            totalPath[i] = 'u';
           }
           if(path.charAt(i+1) == 'd'){
             currY += 1;
+            totalPath[i] = 'd';
           }
           if(path.charAt(i+1) == 'r'){
             currX -= 1;
+            totalPath[i] = 'r';
           }
           if(path.charAt(i+1) == 'l'){
             currX += 1;
+            totalPath[i] = 'l';
           }
           gameMape[currX][currY].state = 'x'
         } 
       }
     }
+    return totalPath
   }
- 
-  d = solveMaze();
-  console.log(gameMap);
+  s = solveMaze();
+  //d = solveMaze();
+  //console.log(gameMap);
+  console.log(s);
   console.log("previous Direction " + prevDirection + " move " + d);
   console.log(request.body.board.turn);
   // Response data
