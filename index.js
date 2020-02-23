@@ -236,8 +236,9 @@ app.post('/move', (request, response) => {
     }
     return totalPath;
   }
- 
-  d = solveMaze();
+  var paths;
+  paths = solveMaze();
+  console.log(paths);
   console.log(gameMap);
   console.log("previous Direction " + prevDirection + " move " + d);
   console.log(request.body.board.turn);
