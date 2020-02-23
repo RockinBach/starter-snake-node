@@ -216,22 +216,22 @@ app.post('/move', (request, response) => {
   // put mySnake into the gameMap
   for(let i = 0; i < mySnake.length; i++){
     if(i == 0){
-      gameMap[mySnake[i].x][mySnake[i].y] = 1; //mysnake head = 1
+      gameMap[mySnake[i].y][mySnake[i].x] = 1; //mysnake head = 1
     }else{
-      gameMap[mySnake[i].x][mySnake[i].y] = 4; //mysnake body = 4
+      gameMap[mySnake[i].y][mySnake[i]. x] = 4; //mysnake body = 4
     }
   }
   // put food locations into the gameMap
   for(let i = 0; i < foods.length; i++){
     if(i == 0){
-      gameMap[foods[i].x][foods[i].y] = 3; //food locations = 3
+      gameMap[foods[i].y][foods[i].x] = 3; //food locations = 3
     }else{
-      gameMap[foods[i].x][foods[i].y] = 2; //food locations = 2 
+      gameMap[foods[i].y][foods[i].x] = 2; //food locations = 2 
     }
   }
   // put enemy snake locations into the gameMap
   for(let i = 0; i < enemySnakes.length; i++){
-    gameMap[enemySnakes[i].x][enemySnakes[i].y] = 4; //enemy snake locations = 4 
+    gameMap[enemySnakes[i].y][enemySnakes[i].x] = 4; //enemy snake locations = 4 
   }
 
   console.log(gameMap);
