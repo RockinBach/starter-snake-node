@@ -108,7 +108,7 @@ app.post('/move', (request, response) => {
     if(i == 0){
       gameMap[mySnake[i].x][mySnake[i].y].state = 's'; //mysnake head = s for start
     }else{
-      gameMap[mySnake[i].x][mySnake[i].y].state = 'b' + i; //mysnake body = b for body
+      gameMap[mySnake[i].x][mySnake[i].y].state = 'b'; //mysnake body = b for body
     }
   }
   // put food locations into the gameMap
