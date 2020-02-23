@@ -119,7 +119,6 @@ app.post('/move', (request, response) => {
   for(let i = 0; i < enemySnakes.length; i++){
     gameMap[enemySnakes[i].x][enemySnakes[i].y].state = 'v'; //enemy snake locations = v for villain 
   }
-  gameMap[0][1].state = 'start'
   console.log(gameMap);
 
   //Maze Solving Function
@@ -233,7 +232,7 @@ app.post('/move', (request, response) => {
   }
  
   d = solveMaze();
-
+  console.log(gameMap);
   // Response data
   var turn = arrMove[d];
   const data = {
