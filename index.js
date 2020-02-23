@@ -109,7 +109,7 @@ app.post('/move', (request, response) => {
   }
   // put food locations into the gameMap
   for(let i = 0; i < foods.length; i++){
-      gameMap[foods[i].x][foods[i].y].state = 'f'; //food locations = f for food
+      gameMap[foods[0].x][foods[0].y].state = 'f'; //food locations = f for food
   }
   // put enemy snake locations into the gameMap
   for(let i = 0; i < enemySnakes.length; i++){
@@ -230,6 +230,7 @@ app.post('/move', (request, response) => {
   d = solveMaze();
   console.log(gameMap);
   console.log("previous Direction " + prevDirection + " move " + d);
+  console.log(request.body.board.turn);
   // Response data
   var turn = arrMove[d];
   const data = {
