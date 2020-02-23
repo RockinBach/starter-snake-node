@@ -209,31 +209,27 @@ app.post('/move', (request, response) => {
   for(let i = 0; i < gameHeight; i++){
     gameMap[i] = [];
     for(let j = 0; j < gameWidth; j++){
-      gameMap[i][j] = 0;
+      gameMap[i][j] = {x: i, y: j, state: 'e'};
     }
   }
 
   // put mySnake into the gameMap
   for(let i = 0; i < mySnake.length; i++){
     if(i == 0){
-      gameMap[mySnake[i].y][mySnake[i].x] = 1; //mysnake head = 1
+      gameMap[mySnake[i].y][mySnake[i].x].state = 's'; //mysnake head = s for start
     }else{
-      gameMap[mySnake[i].y][mySnake[i]. x] = 5 + i; //mysnake body = 4
+      gameMap[mySnake[i].y][mySnake[i].x].state = 'b' + i; //mysnake body = b for body
     }
   }
   // put food locations into the gameMap
   for(let i = 0; i < foods.length; i++){
-    if(i == 0){
-      gameMap[foods[i].y][foods[i].x] = 3; //food locations = 3
-    }else{
-      gameMap[foods[i].y][foods[i].x] = 2; //food locations = 2 
-    }
+      gameMap[foods[i].y][foods[i].x].state = 'f'; //food locations = f for food
   }
   // put enemy snake locations into the gameMap
   for(let i = 0; i < enemySnakes.length; i++){
-    gameMap[enemySnakes[i].y][enemySnakes[i].x] = 4; //enemy snake locations = 4 
+    gameMap[enemySnakes[i].y][enemySnakes[i].x].state = 'v'; //enemy snake locations = v for villain 
   }
-  gameMap[0][1] = 'start'
+  gameMap[0][1].state = 'start'
   console.log(gameMap);
 
   //Maze Solving Function
