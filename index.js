@@ -66,13 +66,13 @@ app.post('/move', (request, response) => {
 
   //Check previous move
   if(mySnake[0].x - 1 == mySnake[1].x){
-    prevDirection = 3;
+    prevDirection = 3; //right
   }else if(mySnake[0].x + 1 == mySnake[1].x){
-    prevDirection = 2;
+    prevDirection = 2; //left
   }else if(mySnake[0].y - 1 == mySnake[1].y){
-    prevDirection = 1;
+    prevDirection = 1; //down
   }else if(mySnake[0].y + 1 == mySnake[1].y){
-    prevDirection = 0;
+    prevDirection = 0; //up
   }
 
   //find closest food     
@@ -218,7 +218,7 @@ app.post('/move', (request, response) => {
     if(i == 0){
       gameMap[mySnake[i].y][mySnake[i].x] = 1; //mysnake head = 1
     }else{
-      gameMap[mySnake[i].y][mySnake[i]. x] = 4; //mysnake body = 4
+      gameMap[mySnake[i].y][mySnake[i]. x] = 5 + i; //mysnake body = 4
     }
   }
   // put food locations into the gameMap
@@ -233,8 +233,30 @@ app.post('/move', (request, response) => {
   for(let i = 0; i < enemySnakes.length; i++){
     gameMap[enemySnakes[i].y][enemySnakes[i].x] = 4; //enemy snake locations = 4 
   }
-
+  gameMap[0][1] = 19;
   console.log(gameMap);
+
+  //Maze Solving Function
+
+  function solveMaze(){
+    var Xqueue = [mySnake[0].x];
+    var Yqueue = [mySnake[0].y];
+
+    var pathFound = false;
+
+    var xLoc;
+    var yLoc;
+
+    while(Xqueue.length > 0 && !pathFound) {
+      xLoc = Xqueue.shift();
+      yLoc = Yqueue.shift();
+
+      if(xLoc > 0){
+        if(gameMap[xLoc - 1][yLoc] == 3)
+      }
+    }
+  }
+ 
 
   // Response data
   var turn = arrMove[d];
