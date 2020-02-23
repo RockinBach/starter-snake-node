@@ -46,7 +46,6 @@ app.post('/start', (request, response) => {
 app.post('/move', (request, response) => {
   var myName = "rockinbach / RockinBach";
   var arrMove = ["up", "down", "left", "right"];
-  var Collision = [0, 0, 0, 0];
   var mySnake = [];
   var foods = [];
   var prevDirection = 0;
@@ -74,9 +73,6 @@ app.post('/move', (request, response) => {
   }else if(mySnake[0].y + 1 == mySnake[1].y){
     prevDirection = 0; //up
   }
-
-  console.log("Collisions " + Collision);
-  console.log("previous Direction " + prevDirection + " move " + d);
 
   // NEW SECTION THAT USES BREADTH FIRST SEARCH
   //
@@ -233,6 +229,7 @@ app.post('/move', (request, response) => {
  
   d = solveMaze();
   console.log(gameMap);
+  console.log("previous Direction " + prevDirection + " move " + d);
   // Response data
   var turn = arrMove[d];
   const data = {
