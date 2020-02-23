@@ -251,8 +251,8 @@ app.post('/move', (request, response) => {
       xLoc = Xqueue.shift();
       yLoc = Yqueue.shift();
 
-      if(xLoc > 0){
-        if(gameMap[xLoc - 1][yLoc] == 3)
+      if(xLoc > 0) {
+        if(gameMap[xLoc - 1][yLoc] == 3){}
       }
     }
   }
