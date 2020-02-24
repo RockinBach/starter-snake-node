@@ -212,6 +212,7 @@ app.post('/move', (request, response) => {
             nextMove = 2;
             totalPath.push(i) = 'u';
           }
+          console.log(totalPath);
           return totalPath;
         } else {
           if(path.charAt(i+1) == 'u'){
