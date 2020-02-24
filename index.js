@@ -193,7 +193,7 @@ app.post('/move', (request, response) => {
       var currX = 0;
       var currY = 0;
       var nextMove = 0
-      var totalPath = [];
+      var totalPath = ['start'];
       for(var i = 0; i < pathLength-1; i++){
          if(path.charAt(i) == 'q'){
           if(path.charAt(i+1) == 'u'){
@@ -232,6 +232,7 @@ app.post('/move', (request, response) => {
             totalPath.push(i) = 'l';
           }
           gameMape[currX][currY].state = 'x'
+          console.log(totalPath);
         } 
       }
     }
@@ -240,7 +241,7 @@ app.post('/move', (request, response) => {
   var paths;
   paths = solveMaze();
   console.log(paths);
-  console.log(gameMap);
+  //console.log(gameMap);
   console.log("previous Direction " + prevDirection + " move " + d);
   console.log(request.body.board.turn);
   // Response data
