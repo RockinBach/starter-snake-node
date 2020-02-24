@@ -109,7 +109,7 @@ app.post('/move', (request, response) => {
   }
   // put food locations into the gameMap
   for(let i = 0; i < foods.length; i++){
-      gameMap[foods[0].x][foods[0].y].state = 'f'; //food locations = f for food
+    gameMap[foods[0].x][foods[0].y].state = 'f'; //food locations = f for food
   }
   // put enemy snake locations into the gameMap
   for(let i = 0; i < enemySnakes.length; i++){
@@ -198,37 +198,37 @@ app.post('/move', (request, response) => {
          if(path.charAt(i) == 'q'){
           if(path.charAt(i+1) == 'u'){
             nextMove = 0;
-            totalPath[i] = 'u';
+            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'd'){
             nextMove = 1;
-            totalPath[i] = 'u';
+            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'r'){
             nextMove = 3;
-            totalPath[i] = 'u';
+            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'l'){
             nextMove = 2;
-            totalPath[i] = 'u';
+            totalPath.push(i) = 'u';
           }
           return totalPath;
         } else {
           if(path.charAt(i+1) == 'u'){
             currY -= 1;
-            totalPath[i] = 'u';
+            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'd'){
             currY += 1;
-            totalPath[i] = 'd';
+            totalPath.push(i) = 'd';
           }
           if(path.charAt(i+1) == 'r'){
             currX -= 1;
-            totalPath[i] = 'r';
+            totalPath.push(i) = 'r';
           }
           if(path.charAt(i+1) == 'l'){
             currX += 1;
-            totalPath[i] = 'l';
+            totalPath.push(i) = 'l';
           }
           gameMape[currX][currY].state = 'x'
         } 
