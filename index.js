@@ -31,8 +31,7 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    color: '4ACBCF', //blue
-    //color: 'FF5DEB',
+    color: '#1E90FF',
     headType: 'tongue',
     tailType: 'fat-rattle'
   }
