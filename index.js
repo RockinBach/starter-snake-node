@@ -118,7 +118,7 @@ app.post('/move', (request, response) => {
 
   //Maze Solving Function
 
-  function solveMaze(prevD){
+  function solveMaze(){
     var Xqueue = [mySnake[0].x];
     var Yqueue = [mySnake[0].y];
 
@@ -126,7 +126,6 @@ app.post('/move', (request, response) => {
 
     var xLoc;
     var yLoc;
-    var prevDir = prevD;
     var nextMove = 5;
 
     while(Xqueue.length > 0 && !pathFound) {
@@ -190,7 +189,39 @@ app.post('/move', (request, response) => {
       }
     }
     if (!pathFound){
-      console.log('No path found');
+      console.log('No path found rerouting');
+      var upperState = gameMap[mySnake[0].y -1][mySnake[0].x].state
+      var lowerState = gameMap[mySnake[0].y +1][mySnake[0].x].state
+      var leftState = gameMap[mySnake[0].y][mySnake[0].x -1].state
+      var rightState = gameMap[mySnake[0].y][mySnake[0].x +1].state
+      
+      console.log(upperState + lowerState + leftState + rightState);
+     
+      if(mySnake[0].x > 0) {
+        if(leftState == 'e' && prevDirection != 3){
+          nextMove = 2;
+          return nextMove;
+        }
+      }
+      if(xmySnake[0].x < gameWidth - 1){
+        if(rightState == 'e' && prevDirection != 2){
+          nextMove = 3;
+          return nextMove;
+        }
+      }
+      if(mySnake[0].y > 0) {
+        if(upperState == 'e' && prevDirection != 1){
+          nextMove = 0;
+          return nextMove;
+        }
+      }
+      if(mySnake[0].y < gameHeight - 1){
+        if(lowerState == 'e' && prevDirection != 0){
+          nextMove = 1;
+          return nextMove;
+        }
+      }
+      
     }else{
       console.log('solved');
       console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
@@ -234,7 +265,7 @@ app.post('/move', (request, response) => {
     return nextMove;
   }
  
-  d = solveMaze(prevDirection);
+  d = solveMaze();
   //console.log(gameMap);
   console.log("previous Direction " + prevDirection + " move " + d);
   console.log(request.body.turn);
