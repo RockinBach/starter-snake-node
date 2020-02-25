@@ -126,6 +126,7 @@ app.post('/move', (request, response) => {
 
     var xLoc;
     var yLoc;
+    var nextMove = 5;
 
     while(Xqueue.length > 0 && !pathFound) {
       xLoc = Xqueue.shift();
@@ -135,21 +136,25 @@ app.post('/move', (request, response) => {
       if(xLoc > 0) {
         if(gameMap[xLoc - 1][yLoc].state == 'f'){
           pathFound = true;
+          nextMove = 2;
         }
       }
       if(xLoc < gameWidth - 1){
         if(gameMap[xLoc + 1][yLoc].state == 'f'){
           pathFound = true;
+          nextMove = 3;
         }
       }
       if(yLoc > 0) {
         if(gameMap[xLoc][yLoc - 1].state == 'f'){
           pathFound = true;
+          nextMove = 0;
         }
       }
       if(yLoc < gameHeight - 1){
         if(gameMap[xLoc][yLoc + 1].state == 'f'){
           pathFound = true;
+          nextMove = 1;
         }
       }
       //check if next space is empty
@@ -187,11 +192,11 @@ app.post('/move', (request, response) => {
       console.log('No path found');
     }else{
       console.log('solved');
+      console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
       var path = gameMap[xLoc][yLoc].state;
       var pathLength = path.length;
       var currX = 0;
       var currY = 0;
-      var nextMove = 0
       for(var i = 0; i < pathLength-1; i++){
         if(path.charAt(i) == 's'){
           if(path.charAt(i+1) == 'u'){
@@ -225,6 +230,7 @@ app.post('/move', (request, response) => {
         } 
       }
     }
+    return nextMove;
   }
  
   d = solveMaze();
