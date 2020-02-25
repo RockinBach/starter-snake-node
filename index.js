@@ -211,6 +211,7 @@ app.post('/move', (request, response) => {
         console.log(gameMap[headX + 1][headY]);
       }
 
+      console.log(gameMap);
     }else{
       console.log('solved');
       console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
