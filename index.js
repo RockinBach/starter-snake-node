@@ -195,7 +195,10 @@ app.post('/move', (request, response) => {
       var leftState = gameMap[mySnake[0].y][mySnake[0].x -1].state
       var rightState = gameMap[mySnake[0].y][mySnake[0].x +1].state
       
-      console.log(upperState + lowerState + leftState + rightState);
+      console.log(upperState);
+      console.log(lowerState);
+      console.log(leftState);
+      console.log(rightState);
      
       if(mySnake[0].x > 0) {
         if(leftState == 'e' && prevDirection != 3){
