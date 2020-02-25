@@ -191,7 +191,13 @@ app.post('/move', (request, response) => {
     }
     if (!pathFound){
       console.log('No path found rerouting');
-      console.log(mySnake[0]);
+      var headX = mySnake[0].x;
+      var headY = mySnake[0].y;
+      console.log('up: ' + gameMap[headX][headY - 1]);
+      console.log('down: ' + gameMap[headX][headY + 1]);
+      console.log('left: ' + gameMap[headX - 1][headY]);
+      console.log('right: ' + gameMap[headX + 1][headY]);
+
     }else{
       console.log('solved');
       console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
