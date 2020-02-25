@@ -193,54 +193,42 @@ app.post('/move', (request, response) => {
       var currX = 0;
       var currY = 0;
       var nextMove = 0
-      var totalPath = ['start'];
       for(var i = 0; i < pathLength-1; i++){
          if(path.charAt(i) == 'q'){
           if(path.charAt(i+1) == 'u'){
             nextMove = 0;
-            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'd'){
             nextMove = 1;
-            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'r'){
             nextMove = 3;
-            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'l'){
             nextMove = 2;
-            totalPath.push(i) = 'u';
           }
-          console.log(totalPath);
-          return totalPath;
+          console.log('nextMove = ' + nextMove);
+          return nextMove;
         } else {
           if(path.charAt(i+1) == 'u'){
             currY -= 1;
-            totalPath.push(i) = 'u';
           }
           if(path.charAt(i+1) == 'd'){
             currY += 1;
-            totalPath.push(i) = 'd';
           }
           if(path.charAt(i+1) == 'r'){
             currX -= 1;
-            totalPath.push(i) = 'r';
           }
           if(path.charAt(i+1) == 'l'){
             currX += 1;
-            totalPath.push(i) = 'l';
           }
           gameMape[currX][currY].state = 'x'
-          console.log(totalPath);
         } 
       }
     }
-    return totalPath;
   }
-  var paths;
-  paths = solveMaze();
-  console.log(paths);
+
+  d = solveMaze();
   //console.log(gameMap);
   console.log("previous Direction " + prevDirection + " move " + d);
   console.log(request.body.turn);
