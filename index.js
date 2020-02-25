@@ -115,7 +115,7 @@ app.post('/move', (request, response) => {
   for(let i = 0; i < enemySnakes.length; i++){
     gameMap[enemySnakes[i].x][enemySnakes[i].y].state = 'v'; //enemy snake locations = v for villain 
   }
-  
+
   //Maze Solving Function
 
   function solveMaze(){
@@ -206,6 +206,7 @@ app.post('/move', (request, response) => {
           if(path.charAt(i+1) == 'l'){
             nextMove = 2;
           }
+          console.log('nextMove' + nextMove);
           return nextMove;
         } else {
           if(path.charAt(i+1) == 'u'){
