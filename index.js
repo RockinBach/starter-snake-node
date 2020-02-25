@@ -190,10 +190,10 @@ app.post('/move', (request, response) => {
     }
     if (!pathFound){
       console.log('No path found rerouting');
-      var upperState = gameMap[mySnake[0].y -1][mySnake[0].x].state
-      var lowerState = gameMap[mySnake[0].y +1][mySnake[0].x].state
-      var leftState = gameMap[mySnake[0].y][mySnake[0].x -1].state
-      var rightState = gameMap[mySnake[0].y][mySnake[0].x +1].state
+      var upperState = gameMap[mySnake[0].x -1][mySnake[0].y].state
+      var lowerState = gameMap[mySnake[0].x +1][mySnake[0].y].state
+      var leftState = gameMap[mySnake[0].x][mySnake[0].y -1].state
+      var rightState = gameMap[mySnake[0].x][mySnake[0].y +1].state
       
       console.log(upperState);
       console.log(lowerState);
