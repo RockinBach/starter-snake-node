@@ -190,45 +190,6 @@ app.post('/move', (request, response) => {
     }
     if (!pathFound){
       console.log('No path found rerouting');
-      var upperState = gameMap[mySnake[0].y -1][mySnake[0].x]
-      var lowerState = gameMap[mySnake[0].y +1][mySnake[0].x]
-      var leftState = gameMap[mySnake[0].y][mySnake[0].x -1]
-      var rightState = gameMap[mySnake[0].y][mySnake[0].x +1]
-      
-      console.log(upperState);
-      console.log(lowerState);
-      console.log(leftState);
-      console.log(rightState);
-     
-      if(mySnake[0].x > 0) {
-        if(leftState.state == 'e' && prevDirection != 3){
-          nextMove = 2;
-          console.log(nextMove);
-          return nextMove;
-        }
-      }
-      if(mySnake[0].x < gameWidth - 1){
-        if(rightState.state == 'e' && prevDirection != 2){
-          nextMove = 3;
-          console.log(nextMove);
-          return nextMove;
-        }
-      }
-      if(mySnake[0].y > 0) {
-        if(upperState.state == 'e' && prevDirection != 1){
-          nextMove = 0;
-          console.log(nextMove);
-          return nextMove;
-        }
-      }
-      if(mySnake[0].y < gameHeight - 1){
-        if(lowerState.state == 'e' && prevDirection != 0){
-          nextMove = 1;
-          console.log(nextMove);
-          return nextMove;
-        }
-      }
-      
     }else{
       console.log('solved');
       console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
