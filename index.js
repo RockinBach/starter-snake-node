@@ -191,6 +191,7 @@ app.post('/move', (request, response) => {
     }
     if (!pathFound){
       console.log('No path found rerouting');
+      console.log(mySnake[0]);
     }else{
       console.log('solved');
       console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
