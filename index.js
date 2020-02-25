@@ -203,24 +203,28 @@ app.post('/move', (request, response) => {
       if(mySnake[0].x > 0) {
         if(leftState == 'e' && prevDirection != 3){
           nextMove = 2;
+          console.log(nextMove);
           return nextMove;
         }
       }
-      if(xmySnake[0].x < gameWidth - 1){
+      if(mySnake[0].x < gameWidth - 1){
         if(rightState == 'e' && prevDirection != 2){
           nextMove = 3;
+          console.log(nextMove);
           return nextMove;
         }
       }
       if(mySnake[0].y > 0) {
         if(upperState == 'e' && prevDirection != 1){
           nextMove = 0;
+          console.log(nextMove);
           return nextMove;
         }
       }
       if(mySnake[0].y < gameHeight - 1){
         if(lowerState == 'e' && prevDirection != 0){
           nextMove = 1;
+          console.log(nextMove);
           return nextMove;
         }
       }
