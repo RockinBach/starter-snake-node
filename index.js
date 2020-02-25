@@ -31,9 +31,9 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    color: '#1E90FF',
-    headType: 'evil',
-    tailType: 'round-bum'
+    color: 'FF5DEB',
+    headType: 'tongue',
+    tailType: 'fat-rattle'
   }
 
   return response.json(data)
@@ -232,9 +232,8 @@ app.post('/move', (request, response) => {
     }
     return nextMove;
   }
- 
+
   d = solveMaze();
-  //console.log(gameMap);
   console.log("previous Direction " + prevDirection + " move " + d);
   console.log(request.body.turn);
   // Response data
