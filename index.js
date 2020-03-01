@@ -31,8 +31,8 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    //color: '#1E90FF',
-    color: '#e51eff',
+    color: '#1E90FF',
+    //color: '#e51eff',
     headType: 'tongue',
     tailType: 'fat-rattle'
   }
@@ -196,19 +196,27 @@ app.post('/move', (request, response) => {
       
       if(mySnake[0].y > 0){
         console.log('up:');
-        console.log(gameMap[headX][headY - 1]);
+        if(gameMap[headX][headY - 1].state == 'e'){
+          console.log('empty');
+        }
       }
       if(mySnake[0].y < gameHeight - 1){
         console.log('down:');
-        console.log(gameMap[headX][headY + 1]);
+        if(gameMap[headX][headY + 1].state == 'e'){
+          console.log('empty');
+        }
       }
       if(mySnake[0].x > 0){
         console.log('left:');
-        console.log(gameMap[headX - 1][headY]);
+        if(gameMap[headX - 1][headY].state == 'e'){
+          console.log('empty');
+        }
       }
       if(mySnake[0].x < gameWidth - 1){
         console.log('right:');
-        console.log(gameMap[headX + 1][headY]);
+        if(gameMap[headX + 1][headY].state == 'e'){
+          console.log('empty');
+        }
       }
 
       console.log(gameMap);
