@@ -227,7 +227,7 @@ app.post('/move', (request, response) => {
         }
       }
 
-      console.log(gameMap);
+      //console.log(gameMap);
     }else{
       console.log('solved');
       console.log('xLoc: ' + xLoc + ' yLoc: ' + yLoc);
