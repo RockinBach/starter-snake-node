@@ -208,21 +208,21 @@ app.post('/move', (request, response) => {
       if(headY < gameHeight - 1){
         console.log('down:');
         console.log(gameMap[headX][headY + 1]);
-        if(gameMap[headX][headY + 1].state == 'e' || gameMap[headX][headY - 1].state == 'sd'){
+        if(gameMap[headX][headY + 1].state == 'e' || gameMap[headX][headY + 1].state == 'sd'){
           console.log('empty');
         }
       }
       if(headX > 0){
         console.log('left:');
         console.log(gameMap[headX - 1][headY]);
-        if(gameMap[headX - 1][headY].state == 'e' || gameMap[headX][headY - 1].state == 'sl'){
+        if(gameMap[headX - 1][headY].state == 'e' || gameMap[headX - 1][headY].state == 'sl'){
           console.log('empty');
         }
       }
       if(headX < gameWidth - 1){
         console.log('right:');
         console.log(gameMap[headX + 1][headY]);
-        if(gameMap[headX + 1][headY].state == 'e' || gameMap[headX][headY - 1].state == 'sr'){
+        if(gameMap[headX + 1][headY].state == 'e' || gameMap[headX + 1][headY].state == 'sr'){
           console.log('empty');
         }
       }
