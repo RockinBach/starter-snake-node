@@ -203,6 +203,8 @@ app.post('/move', (request, response) => {
         console.log(gameMap[headX][headY - 1]);
         if(gameMap[headX][headY - 1].state == 'e' || gameMap[headX][headY - 1].state == 'su'){
           console.log('empty');
+          nextMove = 0;
+          return nextMove;
         }
       }
       if(headY < gameHeight - 1){
@@ -210,6 +212,8 @@ app.post('/move', (request, response) => {
         console.log(gameMap[headX][headY + 1]);
         if(gameMap[headX][headY + 1].state == 'e' || gameMap[headX][headY + 1].state == 'sd'){
           console.log('empty');
+          nextMove = 1;
+          return nextMove;
         }
       }
       if(headX > 0){
@@ -217,6 +221,8 @@ app.post('/move', (request, response) => {
         console.log(gameMap[headX - 1][headY]);
         if(gameMap[headX - 1][headY].state == 'e' || gameMap[headX - 1][headY].state == 'sl'){
           console.log('empty');
+          nextMove = 2;
+          return nextMove;
         }
       }
       if(headX < gameWidth - 1){
@@ -224,6 +230,8 @@ app.post('/move', (request, response) => {
         console.log(gameMap[headX + 1][headY]);
         if(gameMap[headX + 1][headY].state == 'e' || gameMap[headX + 1][headY].state == 'sr'){
           console.log('empty');
+          nextMove = 3;
+          return nextMove;
         }
       }
 
