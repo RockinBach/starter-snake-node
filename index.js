@@ -193,29 +193,32 @@ app.post('/move', (request, response) => {
       console.log('No path found rerouting');
       var headX = mySnake[0].x;
       var headY = mySnake[0].y;
+
+      console.log('Snake Head');
+      console.log(mysnake[0]);
       
-      if(mySnake[0].y > 0){
+      if(headY > 0){
         console.log('up:');
         console.log(gameMap[headX][headY - 1]);
         if(gameMap[headX][headY - 1].state == 'e' || gameMap[headX][headY - 1].state == 'su'){
           console.log('empty');
         }
       }
-      if(mySnake[0].y < gameHeight - 1){
+      if(headY < gameHeight - 1){
         console.log('down:');
         console.log(gameMap[headX][headY + 1]);
         if(gameMap[headX][headY + 1].state == 'e' || gameMap[headX][headY - 1].state == 'sd'){
           console.log('empty');
         }
       }
-      if(mySnake[0].x > 0){
+      if(headX > 0){
         console.log('left:');
         console.log(gameMap[headX - 1][headY]);
         if(gameMap[headX - 1][headY].state == 'e' || gameMap[headX][headY - 1].state == 'sl'){
           console.log('empty');
         }
       }
-      if(mySnake[0].x < gameWidth - 1){
+      if(headX < gameWidth - 1){
         console.log('right:');
         console.log(gameMap[headX + 1][headY]);
         if(gameMap[headX + 1][headY].state == 'e' || gameMap[headX][headY - 1].state == 'sr'){
