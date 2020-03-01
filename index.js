@@ -196,6 +196,7 @@ app.post('/move', (request, response) => {
 
       console.log('Snake Head');
       console.log(headX + ' ' + headY);
+      console.log(gameHeight + ' ' + gameWidth);
       
       if(headY > 0){
         console.log('up:');
