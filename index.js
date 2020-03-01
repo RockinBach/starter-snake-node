@@ -195,7 +195,7 @@ app.post('/move', (request, response) => {
       var headY = mySnake[0].y;
 
       console.log('Snake Head');
-      console.log(mysnake[0]);
+      console.log(mySnake[0]);
       
       if(headY > 0){
         console.log('up:');
